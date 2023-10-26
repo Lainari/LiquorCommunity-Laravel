@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('main');
 });
+
+Route::get('/whisky/info', function(){
+    return view('whisky/info');
+});
+
+Route::get('/whisky/review', function(){
+    return view('whisky/review');
+});
