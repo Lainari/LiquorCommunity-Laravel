@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=M+PLUS+Rounded+1c:wght@400;700&display=swap');
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 20vh;
+}
+
+hr{
+    margin:10px 0px 10px 0px;
+}
+
+.footer-container{
+    margin-top:auto;
+    text-align: center;
+    .footer-title{
+        font-family: 'Kaushan Script', cursive;  
+    }
+    .social-icons{
+        display: flex;
+        margin : 0px 0px 10px 0px;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.footer-container .social-icons i {
+    margin : 0px 30px 0px 30px;
+    color: black;
+}
