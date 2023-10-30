@@ -24,3 +24,19 @@ Route::get('/whisky/info', function(){
 Route::get('/whisky/review', function(){
     return view('whisky/review');
 });
+
+Route::get('/recommend/bar', function(){
+    return view('recommend/bar');
+});
+
+Route::get('/recommend/shop', function(){
+    return view('recommend/shop');
+});
+
+Route::get('/mypage/signin', function(){
+    return view('mypage/signin');
+});
+
+Route::get('/mypage/signup', function(){
+    return view('mypage/signup');
+});
