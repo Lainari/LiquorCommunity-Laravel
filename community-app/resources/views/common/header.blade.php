@@ -32,8 +32,8 @@
                                 추천장소
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">바</a></li>
-                                <li><a class="dropdown-item" href="#">판매점</a></li>
+                                <li><a class="dropdown-item" href="/recommend/bar">바</a></li>
+                                <li><a class="dropdown-item" href="/recommend/shop">판매점</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown me-3">
@@ -41,7 +41,7 @@
                                 마이페이지
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">로그인</a></li>
+                                <li><a class="dropdown-item" href="/mypage/signin">로그인</a></li>
                             </ul>
                         </li>
                     </ul>
