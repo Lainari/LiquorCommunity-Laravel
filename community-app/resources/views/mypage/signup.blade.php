@@ -4,17 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('css/mypage/signup.css') }}">
-    <title>Signin</title>
+    <title>Signup</title>
 </head>
 <body>
     @include('common/header')
     <div class="signup-container">
-        <form action="/mypage/signup/" method="post">
+        <form class="form-main" action="/mypage/signup" method="post">
             @csrf
             <div class="form-group">
-                <label for="id">아이디</label>
-                <input type="text" id="id" name="id" required>
+                <label for="user_id">아이디</label>
+                <div class="input-box">
+                    <input type="text" id="user_id" name="user_id" required>
+                    <button type="button" id="user_id_btn">중복체크</button>
+                </div>
+                <input type="hidden" id="user_id_check" value="0">
             </div>
             <div class="form-group">
                 <label for="password">비밀번호</label>
@@ -22,17 +27,22 @@
             </div>
             <div class="form-group">
                 <label for="nickname">닉네임</label>
-                <input type="text" id="nickname" name="nickname" required>
+                <div class="input-box">
+                    <input type="text" id="nickname" name="nickname" required>
+                    <button type="button" id="nickname_btn">중복체크</button>
+                </div>
+                <input type="hidden" id="nickname_check" value="0">
             </div>
             <div class="form-group">
                 <label for="birthday">생년월일</label>
-                <input type="date" id="birthday" name="birthday" required>
+                <input type="date" id="birthday" name="birthday" required onchange="checkAge()">
             </div>
             <input type="submit" value="회원가입">
         </form>
-        <button onclick="location.href='/mypage/signin'">로그인으로 돌아가기</button>
+        <p class="signin-link" onclick="location.href='/mypage/signin'">로그인 화면으로 돌아가기</p>
     </div>
     @include('common/footer')
-    <script src="{{ asset('js/signup/index.js') }}"></script>
+    <script type="module" src="{{ asset('js/service/signup/index.js') }}"></script>
+    <script type="module" src="{{ asset('js/signup/index.js') }}"></script>
 </body>
 </html>
