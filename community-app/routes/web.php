@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,3 +41,6 @@ Route::get('/mypage/signin', function(){
 Route::get('/mypage/signup', function(){
     return view('mypage/signup');
 });
+
+Route::post('/mypage/signup', [UserController::class, 'store']);
+Route::post('/checkDuplicate',[UserController::class, 'check']);
