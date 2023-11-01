@@ -25,5 +25,10 @@
         <p class="signup-link" onclick="location.href='/mypage/signup'">아직 계정이 없으신가요?</p>
     </div>
     @include('common/footer')
+    @if (session('message'))
+    <script>
+        alert('{{ session('message') }}');
+    </script>
+    @endif
 </body>
 </html>

@@ -43,4 +43,5 @@ Route::get('/mypage/signup', function(){
 });
 
 Route::post('/mypage/signup', [UserController::class, 'store']);
+Route::post('/mypage/signin', [UserController::class, 'login']);
 Route::post('/checkDuplicate',[UserController::class, 'check']);

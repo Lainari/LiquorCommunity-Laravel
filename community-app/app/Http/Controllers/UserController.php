@@ -44,4 +44,20 @@ class UserController extends Controller
         return response()->json(['exists' => $exists]);
     }
 
+    // 로그인 로직
+    public function login(Request $request)
+    {
+        $request->validate([
+            'id' => 'required',
+            'password' => 'required',
+        ]);
+    
+        $user = User::where('user_id', $request->id)->first();
+    
+        if ($user && Hash::check($request->password, $user->password)) {
+            return redirect('/');
+        } else {
+            return redirect('/mypage/signin')->with('message', '잘못된 아이디 또는 비밀번호 입니다');
+        }
+    }
 }
