@@ -1,6 +1,6 @@
 export async function checkDuplicate(type, value) {
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    const response = await fetch('/checkDuplicate', {
+    const response = await fetch('/mypage/signup/checkDuplicate', {
         method: 'POST',
         body: JSON.stringify({type: type, value: value}),
         headers: {
