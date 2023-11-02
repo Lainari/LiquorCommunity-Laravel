@@ -1,4 +1,5 @@
 <header class="header-container">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -41,7 +42,15 @@
                                 마이페이지
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="/mypage/signin">로그인</a></li>
+                                @if($user)
+                                    @if($user->isAdmin)
+                                        <li><a class="dropdown-item" href="/">어드민 전용</a></li>
+                                    @endif
+                                    <li><a class="dropdown-item" href="/" onclick="logout(event)">로그아웃</a></li>
+                                    <li><a class="dropdown-item" href="/mypage/info">내정보</a></li>
+                                @else
+                                    <li><a class="dropdown-item" href="/mypage/signin">로그인</a></li>
+                                @endif
                             </ul>
                         </li>
                     </ul>
@@ -58,3 +67,4 @@
 {{-- dropdown 의존성을 위한 jquery와 popper.js 주입 --}}
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{asset('/js/service/logout/index.js')}}"></script>

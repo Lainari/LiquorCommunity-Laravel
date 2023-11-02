@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
 {
@@ -55,9 +57,18 @@ class UserController extends Controller
         $user = User::where('user_id', $request->id)->first();
     
         if ($user && Hash::check($request->password, $user->password)) {
-            return redirect('/');
+            // 토큰 생성하여 세션에 저장
+            $token = JWTAuth::fromUser($user);
+            return redirect('/')->withCookie('token', $token, 60);
         } else {
             return redirect('/mypage/signin')->with('message', '잘못된 아이디 또는 비밀번호 입니다');
         }
+    }
+
+    // 로그아웃 로직
+    public function logout(Request $request)
+    {
+        $response = response()->json(['message' => '로그아웃 성공']);
+        return $response->withoutCookie('token');
     }
 }

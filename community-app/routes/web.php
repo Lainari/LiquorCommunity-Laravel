@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,34 +15,47 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('main');
+Route::prefix('mypage')->group(function () {
+    Route::get('/signin', function() {
+        return view('mypage/signin');
+    });
+    Route::get('/signup', function() {
+        return view('mypage/signup');
+    });
+    Route::post('/signup', [UserController::class, 'store']);
+    Route::post('/signup/checkDuplicate', [UserController::class, 'check']);
+    Route::post('/signin', [UserController::class, 'login']);
+    Route::post('/signin/logout', [UserController::class, 'logout']);
 });
 
-Route::get('/whisky/info', function(){
-    return view('whisky/info');
-});
+Route::group(['middleware'=>'jwt.token'], function(){
+    
+    Route::get('/', function(){
+        return view('main');
+    });
 
-Route::get('/whisky/review', function(){
-    return view('whisky/review');
-});
+    Route::prefix('whisky')->group(function () {
+        Route::get('/info', function() {
+            return view('whisky/info');
+        });
+        Route::get('/review', function() {
+            return view('whisky/review');
+        });
+    });
+    
+    Route::prefix('recommend')->group(function () {
+        Route::get('/bar', function() {
+            return view('recommend/bar');
+        });
+        Route::get('/shop', function() {
+            return view('recommend/shop');
+        });
+    });
+    
+    Route::prefix('mypage')->group(function () {
+        Route::get('/info', function() {
+            return view('mypage/info');
+        });
+    });
 
-Route::get('/recommend/bar', function(){
-    return view('recommend/bar');
 });
-
-Route::get('/recommend/shop', function(){
-    return view('recommend/shop');
-});
-
-Route::get('/mypage/signin', function(){
-    return view('mypage/signin');
-});
-
-Route::get('/mypage/signup', function(){
-    return view('mypage/signup');
-});
-
-Route::post('/mypage/signup', [UserController::class, 'store']);
-Route::post('/mypage/signin', [UserController::class, 'login']);
-Route::post('/checkDuplicate',[UserController::class, 'check']);
