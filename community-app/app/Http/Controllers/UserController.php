@@ -46,6 +46,34 @@ class UserController extends Controller
         return response()->json(['exists' => $exists]);
     }
 
+    // 회원정보 수정
+    public function update(Request $request)
+    {
+        $user = $request->attributes->get('user');
+    
+        $user->nickname = $request->input('nickname');
+        $user->birthday = $request->input('birthday');
+    
+        if ($user->save()) {
+            return response()->json(['success' => true]);
+        } else {
+            return response()->json(['success' => false]);
+        }
+    }
+
+    // 회원탈퇴 로직
+    public function destroy(Request $request)
+    {
+        $user = User::find($request->id);
+        if ($user) {
+            $user->delete(); 
+            return response()->json(['message' => '회원탈퇴가 완료되었습니다.'], 200);
+        } else {
+            return response()->json(['message' => '회원 정보를 찾을 수 없습니다.'], 404);
+        }
+    }
+
+
     // 로그인 로직
     public function login(Request $request)
     {

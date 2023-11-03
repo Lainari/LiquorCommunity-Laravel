@@ -44,7 +44,7 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 @if($user)
                                     @if($user->isAdmin)
-                                        <li><a class="dropdown-item" href="/">어드민 전용</a></li>
+                                        <li><a class="dropdown-item" href="/manager/approve">게시글 승인</a></li>
                                     @endif
                                     <li><a class="dropdown-item" href="/" onclick="logout(event)">로그아웃</a></li>
                                     <li><a class="dropdown-item" href="/mypage/info">내정보</a></li>

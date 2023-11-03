@@ -1,15 +1,24 @@
 import { checkDuplicate as checkDuplicateService } from '../service/signup/index.js';
+import { sendData } from '../service/account/edit.js';
 
 window.checkAge = checkAge;
 window.checkDuplicate = checkDuplicate;
 
 window.onload = function() {
-    document.querySelector('#user_id_btn').addEventListener('click', function() {
-        checkDuplicate('user_id');
-    });
-    document.querySelector('#nickname_btn').addEventListener('click', function() {
-        checkDuplicate('nickname');
-    });
+    var userIdBtn = document.querySelector('#user_id_btn');
+    var nicknameBtn = document.querySelector('#nickname_btn');
+
+    if(userIdBtn){
+        userIdBtn.addEventListener('click', function() {
+            checkDuplicate('user_id');
+        });
+    }
+    
+    if(nicknameBtn){
+        nicknameBtn.addEventListener('click', function() {
+            checkDuplicate('nickname');
+        });
+    }
 };
 
 function checkAge() {
@@ -22,7 +31,7 @@ function checkAge() {
         age--;
     }
     if (age < 19) {
-        alert("만 19세 미만은 회원가입이 불가능합니다.");
+        alert("만 19세 미만은 이용이 불가능합니다.");
         document.querySelector('#birthday').value = '';
     }
 }
@@ -67,14 +76,34 @@ function checkDuplicate(type) {
 document.querySelector('.form-main').addEventListener('submit', function(event) {
     event.preventDefault(); // 기본 submit 이벤트를 막음
 
-    if (document.querySelector('#user_id_check').value == "0") {
+    var userIdCheck = document.querySelector('#user_id_check');
+    var nicknameCheck = document.querySelector('#nickname_check');
+
+    if (userIdCheck && userIdCheck.value == "0") {
         alert('아이디 중복체크를 하세요');
     }
-    else if (document.querySelector('#nickname_check').value == "0") {
+    else if (nicknameCheck && nicknameCheck.value == "0") {
         alert('닉네임 중복체크를 하세요');
     }
     else {
         alert('회원가입 성공!');
-        event.target.submit(); // 폼 검증이 성공하면, 기본 submit 이벤트를 실행
+        event.target.submit(); 
+        // 폼 검증이 성공하면, 기본 submit 이벤트를 실행
+    }
+});
+
+document.querySelector('#edit').addEventListener('click', function(event) {
+    event.preventDefault();
+
+    var nicknameCheck = document.querySelector('#nickname_check');
+
+    if (nicknameCheck && nicknameCheck.value == "0") {
+        alert('닉네임 중복체크를 하세요');
+    }
+    else {
+        var nickname = document.querySelector('#nickname').value;
+        var birthday = document.querySelector('#birthday').value;
+        
+        sendData(nickname, birthday);
     }
 });

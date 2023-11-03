@@ -56,6 +56,14 @@ Route::group(['middleware'=>'jwt.token'], function(){
         Route::get('/info', function() {
             return view('mypage/info');
         });
+        Route::put('/account/edit', [UserController::class, 'update']);
+        Route::delete('/account/withdrawal', [UserController::class, 'destroy']);
     });
 
+    
+    Route::prefix('manager')->group(function() {
+        Route::get('/approve', function(){
+            return view('manager/approve');
+        });
+    });
 });
