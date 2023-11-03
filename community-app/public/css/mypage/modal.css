@@ -1,0 +1,19 @@
+.modal-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nickname-group{
+    display: flex;
+
+    .input{
+        margin: 10px 5px 10px 0px;
+    }
+    
+    .check-btn{
+        margin-top:10px;
+        width:115px;
+        height: 37.6px;
+    }
+}

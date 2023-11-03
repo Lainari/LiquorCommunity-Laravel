@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
+
+h2{
+    font-family: Poor Story;
+    text-align: center;
+    padding:20px 0px 10px 0px;
+}
+
+.info-main{
+    padding : 50px 0px;
+    margin:auto;
+    width:300px;
+    border : 1px solid black;
+    border-radius: 5px;
+    font-family: Poor Story;
+    justify-content: center;
+    display: flex;
+}
+
+.info-container{
+    justify-content: center;
+    text-align: center;
+}
