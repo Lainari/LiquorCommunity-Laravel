@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// 로그인 상태 없어도 되는 곳
 Route::prefix('mypage')->group(function () {
     Route::get('/signin', function() {
         return view('mypage/signin');
@@ -29,6 +30,8 @@ Route::prefix('mypage')->group(function () {
     Route::post('/signin/logout', [UserController::class, 'logout']);
 });
 
+
+// 여기서부터는 jwt.token을 요구함(로그인 상태)
 Route::group(['middleware'=>'jwt.token'], function(){
     
     Route::get('/', function(){
@@ -37,10 +40,12 @@ Route::group(['middleware'=>'jwt.token'], function(){
 
     Route::prefix('whisky')->group(function () {
         Route::get('/info', function() {
-            $posts = App\Models\Post::where('type', 'info')->get();
+            $posts = Post::where('type', 'info')->get();
             return view('whisky.info', ['posts' => $posts]);
         });
         Route::post('/info', [PostController::class, 'infoCreate']);
+        // 위스키 정보 각 게시글별 이동
+        Route::get('/info/{id}', [PostController::class, 'infoShow']);
 
         Route::get('/review', function() {
             return view('whisky/review');

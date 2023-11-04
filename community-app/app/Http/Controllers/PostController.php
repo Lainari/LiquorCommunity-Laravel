@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
-    // 게시글 생성
+    // 위스키 정보 게시글 생성
     public function infoCreate(Request $request){
         // 위스키정보 이미지 별도 저장
         $paths = [];
@@ -31,5 +31,14 @@ class PostController extends Controller
         $post->save();
 
         return redirect('/whisky/info');
+    }
+
+    // 위스키 정보 게시글별 페이지 로드
+    public function infoShow($id){
+        $post = Post::find($id);
+        if($post === null || $post->type != 'info') {
+            abort(404);
+        }
+        return view('whisky/post/info_post', ['post' => $post]);
     }
 }
