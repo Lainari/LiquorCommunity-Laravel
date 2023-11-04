@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +23,7 @@ Route::prefix('mypage')->group(function () {
     Route::get('/signup', function() {
         return view('mypage/signup');
     });
-    Route::post('/signup', [UserController::class, 'store']);
+    Route::post('/signup', [UserController::class, 'create']);
     Route::post('/signup/checkDuplicate', [UserController::class, 'check']);
     Route::post('/signin', [UserController::class, 'login']);
     Route::post('/signin/logout', [UserController::class, 'logout']);
@@ -36,8 +37,11 @@ Route::group(['middleware'=>'jwt.token'], function(){
 
     Route::prefix('whisky')->group(function () {
         Route::get('/info', function() {
-            return view('whisky/info');
+            $posts = App\Models\Post::where('type', 'info')->get();
+            return view('whisky.info', ['posts' => $posts]);
         });
+        Route::post('/info', [PostController::class, 'infoCreate']);
+
         Route::get('/review', function() {
             return view('whisky/review');
         });
