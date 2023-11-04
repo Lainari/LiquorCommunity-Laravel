@@ -11,7 +11,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 class UserController extends Controller
 {
     // 회원가입
-    public function store(Request $request)
+    public function create(Request $request)
     {
         $request->validate([
             'user_id' => 'required|unique:users',
