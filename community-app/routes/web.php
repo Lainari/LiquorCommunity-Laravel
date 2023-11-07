@@ -44,8 +44,9 @@ Route::group(['middleware'=>'jwt.token'], function(){
             return view('whisky.info', ['posts' => $posts]);
         });
         Route::post('/info', [PostController::class, 'infoCreate']);
-        // 위스키 정보 각 게시글별 이동
         Route::get('/info/{id}', [PostController::class, 'infoShow']);
+        Route::put('/info/{id}', [PostController::class, 'infoUpdate']);
+        Route::delete('/info/post/{id}', [PostController::class, 'infoDestroy']);
 
         Route::get('/review', function() {
             return view('whisky/review');
