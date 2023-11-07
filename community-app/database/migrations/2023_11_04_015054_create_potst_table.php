@@ -17,7 +17,7 @@ return new class extends Migration
             $table->enum('type', ['info', 'review', 'bar', 'shop']);
             $table->string('nickname');
             $table->string('title');
-            $table->string('content');
+            $table->mediumText('content');
             $table->string('image')->nullable();
             $table->timestamps();
             $table->boolean('approve')->default(false); // 관리자 승인 받으면 보이도록
