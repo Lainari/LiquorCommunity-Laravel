@@ -51,6 +51,11 @@ Route::group(['middleware'=>'jwt.token'], function(){
         Route::get('/review', function() {
             return view('whisky/review');
         });
+
+        Route::get('/review', function() {
+            $posts = Post::where('type', 'review')->get();
+            return view('whisky.review', ['posts' => $posts]);
+        });
     });
     
     Route::prefix('recommend')->group(function () {
