@@ -19,7 +19,7 @@
         @foreach ($posts as $post)
         <div class="post justify-content-start">
             <a href="/whisky/info/{{ $post->id }}">
-                <img class="img-thumbnail thumbnail" src="{{asset(json_decode($post->image, true)[0])}}">
+                <img class="img-thumbnail thumbnail" src="{{asset($post->image)}}">
             </a>
             <div class="m-2">
                 <h3><a class="post-title" href="/whisky/info/{{ $post->id }}">{{ $post->title }}</a></h3>

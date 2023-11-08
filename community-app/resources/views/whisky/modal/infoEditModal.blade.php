@@ -14,7 +14,7 @@
             <input type="hidden" name="nickname" value="{{ $user->nickname }}">
             <div class="d-flex form-group justify-content-start">
               <label for="image" class="me-2 fs-5 fw-bold">이미지</label>
-              <input type="file" name="images[]" id="image" multiple>
+              <input type="file" name="image" id="image" required>
             </div>
             <div class="form-group mt-3">
               <label for="content" class="fs-5 fw-bold">내용</label>

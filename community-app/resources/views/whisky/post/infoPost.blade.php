@@ -20,17 +20,15 @@
                 @endif
             </div>
             <div class="border rounded mt-3 p-1 d-flex">
-                <span class="fs-3 fw-bold pt-2 pb-2">제목 : {{ $post->title }}</span>
+                <span class="fs-3 fw-bold pt-2 pb-2">{{ $post->title }}</span>
             </div>
             <div class="border-bottom mt-3">
                 <p class="fs-5 fw-bolder">작성자 : {{ $post->nickname }}</p>
             </div>
             <div class="border rounded mt-4 mb-3">
-                @foreach(json_decode($post->image, true) as $image)
                 <div class="text-center mb-3">
-                    <img class="img-box rounded mt-5" src="{{ asset($image) }}">
+                    <img class="img-box rounded mt-5" src="{{ asset($post->image) }}">
                 </div>
-                @endforeach
                 <p class="fs-5 p-3 lh-base">{!! nl2br(e($post->content)) !!}
                 </p>
                 <div class="d-flex  justify-content-end">
