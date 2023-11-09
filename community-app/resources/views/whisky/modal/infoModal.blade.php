@@ -3,7 +3,7 @@
       <form class="form-main" action="/whisky/info" method="post" enctype="multipart/form-data">
       <div class="modal-content">
         <div class="modal-header">
-          <label for="title" class="me-2 fs-5 fw-bold col-1">제목</label>
+          <label for="title" class="me-2 fs-5 fw-bold col-1">위스키 명</label>
           <input type="text" class="form-control" name="title" id="title" required>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -18,18 +18,42 @@
               </div>
             </div>
             <div class="form-group mt-3">
-              <label for="content" class="fs-5 fw-bold mb-1">내용</label>
-              <textarea class="form-control h-25" rows="10" name="content" id="content" placeholder=
-"
-☑ 관리자 승인을 위해서는 다음의 사항을 기재해주세요!
---------------------------------------------------------------------------------------------------------------------------------
-1. 위스키의 사진은 필수 (사진은 최상단에 기재된 후 내용이 아래에 표기됩니다)
-2. 알콜 함량, 원산지, 재료 표기
-3. 유저분들에게 알릴 정보 (ex : 가격, 구입처, 용량 등)
-4. 리뷰는 리뷰 게시판을 이용해주시길 바랍니다.
-❗ 위 사항에 어긋난 정보 게시글은 승인 불가 처리됩니다
---------------------------------------------------------------------------------------------------------------------------------"
-required></textarea>
+              <label for="content" class="fs-5 fw-bold mb-3">내용</label>
+              <div class="form-group">
+                <label class="fs-6 fw-bold ms-2 mb-2" for="region-category">지역별</label>
+                <select class="form-select" aria-label="whisky-region-select">
+                  <option selected>지역을 선택해주세요</option>
+                  <option value="1">스카치</option>
+                  <option value="2">아이리시</option>
+                  <option value="3">아메리칸 버번</option>
+                  <option value="3">아메리칸 테네시</option>
+                  <option value="3">캐나디안</option>
+                  <option value="3">재패니스</option>
+                  <option value="3">그 외</option>
+                </select>
+              </div>
+              <div class="form-group mb-2">
+                <label class="fs-6 fw-bold ms-2 mb-2" for="material-category">재료별</label>
+                <select class="form-select" aria-label="whisky-region-select">
+                  <option selected>재료를 선택해주세요</option>
+                  <option value="1">싱글 몰트</option>
+                  <option value="2">블렌디드 몰트</option>
+                  <option value="3">그레인 콘</option>
+                  <option value="3">그레인 라이</option>
+                  <option value="3">그레인 위트</option>
+                  <option value="3">블렌디드</option>
+                  <option value="3">그 외</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="fs-6 fw-bold ms-2 mb-2" for="material-category">도수 (숫자만 입력)</label>
+                <input class="form-control mb-2" type="text">
+              </div>
+              <div class="form-group">
+                <label class="fs-6 fw-bold ms-2 mb-2" for="material-category">추가 기재사항</label>
+<textarea class="form-control h-10" rows="5" name="content" id="content">
+</textarea>
+              </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
