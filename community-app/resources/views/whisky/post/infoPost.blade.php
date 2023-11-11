@@ -25,9 +25,16 @@
             <div class="border-bottom mt-3">
                 <p class="fs-5 fw-bolder">작성자 : {{ $post->nickname }}</p>
             </div>
+            <div class="border-bottom mt-3">
+                <p class="fs-5 fw-bolder">지역 : {{ $post->whisky->region }}</p>
+                <p class="fs-5 fw-bolder">재료 : {{ $post->whisky->material }}</p>
+                <p class="fs-5 fw-bolder">도수 : {{ $post->whisky->alcohol }}% Vol.</p>
+            </div>
             <div class="border rounded mt-4 mb-3">
                 <div class="text-center mb-3">
-                    <img class="img-box rounded mt-5" src="{{ asset($post->image) }}">
+                    @foreach ($post->images as $image)
+                        <img class="img-box rounded mt-5" src="{{ asset($image->path) }}">
+                    @endforeach
                 </div>
                 <p class="fs-5 p-3 lh-base">{!! nl2br(e($post->content)) !!}
                 </p>

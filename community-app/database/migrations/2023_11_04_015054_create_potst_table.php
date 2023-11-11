@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('nickname');
             $table->string('title');
             $table->mediumText('content');
-            $table->string('image')->nullable();
             $table->timestamps();
             $table->boolean('approve')->default(false); // 관리자 승인 받으면 보이도록
             // 외래키 설정

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
+use App\Models\Whisky;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -25,8 +27,19 @@ class PostController extends Controller
         $post->nickname = $request->input('nickname');
         $post->title = $request->input('title');
         $post->content = $request->input('content');
-        $post->image = $path;
         $post->save();
+
+        $whisky = new Whisky();
+        $whisky->region = $request->input('region');
+        $whisky->material = $request->input('material');
+        $whisky->alcohol = $request->input('alcohol');
+        $whisky->post_id = $post->id;
+        $whisky->save();
+
+        $image = new Image();
+        $image->post_id = $post->id;
+        $image->path = $path;
+        $image->save();
 
         return redirect('/whisky/info');
     }
@@ -34,41 +47,69 @@ class PostController extends Controller
     // 위스키 정보 게시글별 페이지 로드
     public function infoShow($id){
         $post = Post::find($id);
+        $whisky = $post->whisky;
+        $images = $post->images;
+
         if($post === null || $post->type != 'info') {
             abort(404);
         }
-        return view('whisky/post/infoPost', ['post' => $post]);
+        return view('whisky/post/infoPost', ['post' => $post, 'whisky' => $whisky, 'images' => $images]);
     }
 
     // 위스키 정보 게시글 삭제
     public function infoDestroy($id){
         $post = Post::find($id);
-        $image = $post->image;
-        if($image){
-            Storage::disk('public')->delete(str_replace('/storage/', '', $image));
-            Storage::disk('local')->delete(str_replace('/storage/', '', $image));
+
+        $whisky = $post->whisky;
+        if($whisky){
+            $whisky->delete();
         }
+
+        $images = $post->images;
+        foreach($images as $image){
+            $imagePath = str_replace('/storage/', '', $image->path);
+            Storage::disk('public')->delete($imagePath);
+            $image->delete();
+        }
+
         $post->delete();
     }
 
+
+    // 위스키 정보 게시글 수정
     public function infoUpdate(Request $request, $id){
-        $content = $request->input('content');
         $post = Post::find($id);
         $post->title = $request->input('title');
-        $post->content = $content;
+        $post->content = $request->input('content');
+        $post->save();
+
+        $whisky = $post->whisky;
+        $whisky->region = $request->input('region');
+        $whisky->material = $request->input('material');
+        $whisky->alcohol = $request->input('alcohol');
+        $whisky->save();
+
         if($request->hasfile('image'))
         {
             $image = $request->file('image');
             $path = $image->store('image/whisky/info', 'public');
             $path = Storage::url($path);
-            // 새 이미지 업로드 후 기존 이미지 삭제
-            $oldImage = $post->image;
-            if($oldImage){
-                Storage::disk('public')->delete(str_replace('/storage/', '', $oldImage));
+
+            // 새로운 Image 인스턴스를 만들고 기존의 모든 이미지를 삭제하는 방법
+            $oldImages = $post->images;
+            foreach($oldImages as $oldImage){
+                Storage::disk('public')->delete(str_replace('/storage/', '', $oldImage->path));
+                Storage::disk('local')->delete(str_replace('/storage/', '', $oldImage->path));
+                $oldImage->delete();
             }
-            $post->image = $path;
+
+            $newImage = new Image();
+            $newImage->post_id = $post->id;
+            $newImage->path = $path;
+            $newImage->save();
         }
-        $post->save();
+
         return redirect('/whisky/info/'.$id);
     }
+
 }

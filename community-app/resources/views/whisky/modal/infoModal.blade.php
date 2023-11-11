@@ -21,36 +21,36 @@
               <label for="content" class="fs-5 fw-bold mb-3">내용</label>
               <div class="form-group">
                 <label class="fs-6 fw-bold ms-2 mb-2" for="region-category">지역별</label>
-                <select class="form-select" aria-label="whisky-region-select">
+                <select class="form-select" name="region" aria-label="whisky-region-select">
                   <option selected>지역을 선택해주세요</option>
-                  <option value="1">스카치</option>
-                  <option value="2">아이리시</option>
-                  <option value="3">아메리칸 버번</option>
-                  <option value="3">아메리칸 테네시</option>
-                  <option value="3">캐나디안</option>
-                  <option value="3">재패니스</option>
-                  <option value="3">그 외</option>
+                  <option value="스카치">스카치</option>
+                  <option value="아이리시">아이리시</option>
+                  <option value="아메리칸 버번">아메리칸 버번</option>
+                  <option value="아메리칸 테네시">아메리칸 테네시</option>
+                  <option value="캐나디안">캐나디안</option>
+                  <option value="재패니스">재패니스</option>
+                  <option value="그 외">그 외</option>
                 </select>
               </div>
               <div class="form-group mb-2">
                 <label class="fs-6 fw-bold ms-2 mb-2" for="material-category">재료별</label>
-                <select class="form-select" aria-label="whisky-region-select">
+                <select class="form-select" name="material" aria-label="whisky-material-select">
                   <option selected>재료를 선택해주세요</option>
-                  <option value="1">싱글 몰트</option>
-                  <option value="2">블렌디드 몰트</option>
-                  <option value="3">그레인 콘</option>
-                  <option value="3">그레인 라이</option>
-                  <option value="3">그레인 위트</option>
-                  <option value="3">블렌디드</option>
-                  <option value="3">그 외</option>
+                  <option value="싱글 몰트">싱글 몰트</option>
+                  <option value="블렌디드 몰트">블렌디드 몰트</option>
+                  <option value="그레인">그레인</option>
+                  <option value="라이(호밀)">라이(호밀)</option>
+                  <option value="콘(옥수수)">콘(옥수수)</option>
+                  <option value="블렌디드">블렌디드</option>
+                  <option value="그 외">그 외</option>
                 </select>
               </div>
               <div class="form-group">
-                <label class="fs-6 fw-bold ms-2 mb-2" for="material-category">도수 (숫자만 입력)</label>
-                <input class="form-control mb-2" type="text">
+                <label class="fs-6 fw-bold ms-2 mb-2" for="alcohol">도수 (숫자만 입력)</label>
+                <input class="form-control mb-2" name="alcohol" type="text">
               </div>
               <div class="form-group">
-                <label class="fs-6 fw-bold ms-2 mb-2" for="material-category">추가 기재사항</label>
+                <label class="fs-6 fw-bold ms-2 mb-2" for="content">추가 기재사항</label>
 <textarea class="form-control h-10" rows="5" name="content" id="content">
 </textarea>
               </div>
