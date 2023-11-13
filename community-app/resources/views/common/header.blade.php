@@ -8,8 +8,12 @@
         crossorigin="anonymous"
     >
     <div class="header">
-        <img class="logo" src="{{asset('image/whisky-whiskey-svgrepo-com.svg')}}" alt="logo">
-        <h2 class="title">WhiskyCommunity</h2>
+        <a href="/" class="text-decoration-none text-body">
+        <div class="d-flex align-items-center">
+            <img class="logo" src="{{asset('image/whisky-whiskey-svgrepo-com.svg')}}" alt="logo">
+            <h2 class="title">WhiskyCommunity</h2>
+        </div>
+        </a>
     </div>
     <div class="nav-container">
         <nav class="navbar navbar-expand-lg rounded-3" style="background-color: #cc732d;">

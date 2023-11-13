@@ -12,7 +12,7 @@
     <div class="d-flex justify-content-center">
         <div class="post-box justify-content-start">
             <div class="d-flex justify-content-end">
-                @if(($post->user_id)===($user->id))
+                @if(($post->user_id)===($user->id) || ($post->user_id)===('admin'))
                     <button class="mt-3 ms-2 btn btn-info"
                     type="button" data-bs-toggle="modal" data-bs-target="#infoEditModal">수정</button>
                     <button class="mt-3 ms-2 btn btn-danger" type="submit"
