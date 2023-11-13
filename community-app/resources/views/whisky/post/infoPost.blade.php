@@ -19,27 +19,30 @@
                         value="게시글삭제" data-id="{{$post->id}}" onclick="infoDelete(event)">삭제</button>
                 @endif
             </div>
-            <div class="border rounded mt-3 p-1 d-flex">
-                <span class="fs-3 fw-bold pt-2 pb-2">{{ $post->title }}</span>
-            </div>
-            <div class="border-bottom mt-3">
-                <p class="fs-5 fw-bolder">작성자 : {{ $post->nickname }}</p>
-            </div>
-            <div class="border-bottom mt-3">
-                <p class="fs-5 fw-bolder">지역 : {{ $post->whisky->region }}</p>
-                <p class="fs-5 fw-bolder">재료 : {{ $post->whisky->material }}</p>
-                <p class="fs-5 fw-bolder">도수 : {{ $post->whisky->alcohol }}% Vol.</p>
-            </div>
-            <div class="border rounded mt-4 mb-3">
-                <div class="text-center mb-3">
-                    @foreach ($post->images as $image)
-                        <img class="img-box rounded mt-5" src="{{ asset($image->path) }}">
-                    @endforeach
+            <div class="mt-4 mb-3">
+                <div class="text-box d-flex">
+                    <div class="text-left ms-3 mb-3">
+                        @foreach ($post->images as $image)
+                            <img class="img-box rounded mt-5" src="{{ asset($image->path) }}">
+                        @endforeach
+                    </div>
+                    <div class="mt-4 ms-4">
+                        <div class="mt-3 p-1 d-flex">
+                            <span class="fs-3 fw-bold pt-2 pb-2">{{ $post->title }}</span>
+                        </div>
+                        <p class="fs-5 mt-3 fw-bolder bg-warning">위스키 기본 정보</p>
+                        <div class="mt-4">
+                            <p class="fs-5 fw-bolder">지역 : {{ $post->whisky->region }}</p>
+                            <p class="fs-5 fw-bolder">재료 : {{ $post->whisky->material }}</p>
+                            <p class="fs-5 fw-bolder">도수 : {{ $post->whisky->alcohol }}% Vol.</p>
+                        </div>
+                        <p class="fs-5 mt-5 fw-bolder bg-warning">추가 설명</p>
+                        <p class="fs-5">{!! nl2br(e($post->content)) !!}</p>
+                    </div>
                 </div>
-                <p class="fs-5 p-3 lh-base">{!! nl2br(e($post->content)) !!}
-                </p>
-                <div class="d-flex  justify-content-end">
-                    <button class="btn btn-dark m-3" onClick="location.href='/whisky/info'">
+                <p class="fs-6 me-4 mb-0 fw-bold text-end">작성자 : {{ $post->nickname }}</p>
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-dark mb-3 me-3" onClick="location.href='/whisky/info'">
                         게시물 리스트로
                     </button>
                 </div>
