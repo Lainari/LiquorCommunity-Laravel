@@ -9,7 +9,7 @@
         </div>
         <div class="modal-body">
             @csrf
-            <input type="hidden" name="type" value="info">
+            <input type="hidden" name="type" value="review">
             <input type="hidden" name="nickname" value="{{ $user->nickname }}">
             <div class="d-flex form-group justify-content-start align-items-center">
               <label for="image" class="me-2 fs-5 fw-bold col-1">이미지</label>

@@ -49,13 +49,11 @@ Route::group(['middleware'=>'jwt.token'], function(){
         Route::delete('/info/post/{id}', [PostController::class, 'infoDestroy']);
 
         Route::get('/review', function() {
-            return view('whisky/review');
-        });
-
-        Route::get('/review', function() {
             $posts = Post::where('type', 'review')->get();
             return view('whisky.review', ['posts' => $posts]);
         });
+        Route::post('/review', [PostController::class, 'reviewCreate']);
+        Route::get('/review/{id}', [PostController::class, 'reviewShow']);
     });
     
     Route::prefix('recommend')->group(function () {

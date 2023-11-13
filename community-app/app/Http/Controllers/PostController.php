@@ -112,4 +112,43 @@ class PostController extends Controller
         return redirect('/whisky/info/'.$id);
     }
 
+    // 위스키 리뷰 게시글 생성
+    public function reviewCreate(Request $request){
+        // 위스키정보 이미지 별도 저장
+        $post = new Post();
+        $post->id = Post::max('id') + 1;
+        $post->user_id = auth()->user()->id;
+        $post->type = $request->input('type');
+        $post->nickname = $request->input('nickname');
+        $post->title = $request->input('title');
+        $post->content = $request->input('content');
+        $post->save();
+
+        $path = '';
+        if($request->hasFile('images'))
+        {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('image/whisky/review', 'public');
+                $path = Storage::url($path);
+        
+                $imageModel = new Image();
+                $imageModel->post_id = $post->id;
+                $imageModel->path = $path;
+                $imageModel->save();
+            }
+        }
+        return redirect('/whisky/review');
+    }
+
+    // 위스키 리뷰 게시글별 페이지 로드
+    public function reviewShow($id){
+        $post = Post::find($id);
+        $images = $post->images;
+
+        if($post === null || $post->type != 'review') {
+            abort(404);
+        }
+        return view('whisky/post/reviewPost', ['post' => $post, 'images' => $images]);
+    }
+
 }
