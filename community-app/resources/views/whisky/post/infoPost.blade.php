@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset('css/whisky/infoPost.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/whisky/postPage.css') }}">
     <title>{{$post->title}}</title>
 </head>
 <body>
@@ -37,7 +37,7 @@
                             <p class="fs-5 fw-bolder">도수 : {{ $post->whisky->alcohol }}% Vol.</p>
                         </div>
                         <p class="fs-5 mt-5 fw-bolder bg-warning">추가 설명</p>
-                        <p class="fs-5 content">{!! nl2br(e($post->content)) !!}</p>
+                        <p class="fs-5 content" style="width:500px">{!! nl2br(e($post->content)) !!}</p>
                     </div>
                 </div>
                 <p class="fs-6 me-4 mb-0 fw-bold text-end">작성자 : {{ $post->nickname }}</p>

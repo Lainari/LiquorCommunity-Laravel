@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset('css/whisky/infoPost.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/whisky/postPage.css') }}">
     <title>{{$post->title}}</title>
 </head>
 <body>
     @include('common/header')
-    <div class="d-flex justify-content-center">
+    <div class="d-flex mt-2 justify-content-center mb-3">
         <div class="post-box justify-content-start">
             <div class="d-flex justify-content-end">
                 @if(($post->user_id)===($user->id) || ($post->user_id)===('admin'))
@@ -19,21 +19,35 @@
                         value="게시글삭제" data-id="{{$post->id}}" onclick="infoDelete(event)">삭제</button> --}}
                 @endif
             </div>
-            <div class="border rounded mt-3 p-1 d-flex">
-                <span class="fs-3 fw-bold pt-2 pb-2">{{ $post->title }}</span>
+            <div class="mt-3 ps-3 d-flex">
+                <span class="fs-3 fw-bolder pt-2 pb-2">제목 : {{ $post->title }}</span>
             </div>
-            <div class="border-bottom mt-3">
+            <div class="mt-2 ps-3">
                 <p class="fs-5 fw-bolder">작성자 : {{ $post->nickname }}</p>
             </div>
-            <div class="border rounded mt-4 mb-3">
+            <div class="mt-2 mb-3">
                 <div class="text-center mb-3">
-                    @foreach ($post->images as $image)
-                        <img class="img-box rounded mt-5" src="{{ asset($image->path) }}">
-                    @endforeach
+                    <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            @foreach ($post->images as $image)
+                            <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                <img class="img-box rounded mt-5" src="{{ asset($image->path) }}">
+                            </div>
+                            @endforeach
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon rounded" style="background-color:black; height:50px;" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon rounded" style="background-color:black; height:50px;" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                      </div>
                 </div>
                 <p class="fs-5 p-3 lh-base">{!! nl2br(e($post->content)) !!}
                 </p>
-                <div class="d-flex  justify-content-end">
+                <div class="d-flex justify-content-end">
                     <button class="btn btn-dark m-3" onClick="location.href='/whisky/review'">
                         게시물 리스트로
                     </button>
