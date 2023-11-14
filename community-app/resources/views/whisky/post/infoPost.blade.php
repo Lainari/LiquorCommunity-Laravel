@@ -9,9 +9,9 @@
 </head>
 <body>
     @include('common/header')
-    <div class="d-flex justify-content-center">
+    <div class="d-flex mt-2 justify-content-center mb-3">
         <div class="post-box justify-content-start">
-            <div class="d-flex justify-content-end">
+            <div class="d-flex justify-content-end me-2">
                 @if(($post->user_id)===($user->id) || ($post->user_id)===('admin'))
                     <button class="mt-3 ms-2 btn btn-info"
                     type="button" data-bs-toggle="modal" data-bs-target="#infoEditModal">수정</button>
@@ -23,7 +23,7 @@
                 <div class="text-box d-flex">
                     <div class="text-left ms-3 mb-3">
                         @foreach ($post->images as $image)
-                            <img class="img-box rounded mt-5" src="{{ asset($image->path) }}">
+                            <img class="img-box rounded pt-2 pb-2 mt-5" src="{{ asset($image->path) }}">
                         @endforeach
                     </div>
                     <div class="mt-4 ms-4">
@@ -37,7 +37,7 @@
                             <p class="fs-5 fw-bolder">도수 : {{ $post->whisky->alcohol }}% Vol.</p>
                         </div>
                         <p class="fs-5 mt-5 fw-bolder bg-warning">추가 설명</p>
-                        <p class="fs-5">{!! nl2br(e($post->content)) !!}</p>
+                        <p class="fs-5 content">{!! nl2br(e($post->content)) !!}</p>
                     </div>
                 </div>
                 <p class="fs-6 me-4 mb-0 fw-bold text-end">작성자 : {{ $post->nickname }}</p>

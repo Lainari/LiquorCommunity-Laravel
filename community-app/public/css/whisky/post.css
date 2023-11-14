@@ -14,8 +14,8 @@
     display: flex;
     justify-content: center;
     .thumbnail{
-        width:100px;
-        height:80px;
+        width:80px;
+        height:70px;
         cursor: pointer;
     }
     .post-title{
