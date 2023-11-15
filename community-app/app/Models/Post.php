@@ -24,4 +24,9 @@ class Post extends Model
     {
         return $this->hasOne(Whisky::class);
     }
+
+    public function star()
+    {
+        return $this->hasOne(Star::class);
+    }
 }
