@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Image;
 use App\Models\Whisky;
 use App\Models\Post;
+use App\Models\Star;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -124,6 +125,12 @@ class PostController extends Controller
         $post->content = $request->input('content');
         $post->save();
 
+        $star = new Star();
+        $star->post_id = $post->id;
+        $star->user_id = auth()->user()->id;
+        $star->rating = $request->input('rating');
+        $star->save();
+
         $path = '';
         if($request->hasFile('images'))
         {
@@ -144,11 +151,12 @@ class PostController extends Controller
     public function reviewShow($id){
         $post = Post::find($id);
         $images = $post->images;
+        $star = $post->star;
 
         if($post === null || $post->type != 'review') {
             abort(404);
         }
-        return view('whisky/post/reviewPost', ['post' => $post, 'images' => $images]);
+        return view('whisky/post/reviewPost', ['post' => $post, 'images' => $images, 'star' => $star]);
     }
 
 }
