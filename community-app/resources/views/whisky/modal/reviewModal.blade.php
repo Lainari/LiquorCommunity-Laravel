@@ -18,6 +18,17 @@
               </div>
             </div>
             <div class="form-group mt-3">
+              <label for="rating" class="fs-5 fw-bold mb-1">평점</label>
+              <div class="rating">
+                <span class="star" data-value="1"><i class="far fa-star"></i></span>
+                <span class="star" data-value="2"><i class="far fa-star"></i></span>
+                <span class="star" data-value="3"><i class="far fa-star"></i></span>
+                <span class="star" data-value="4"><i class="far fa-star"></i></span>
+                <span class="star" data-value="5"><i class="far fa-star"></i></span>
+                <input type="hidden" name="rating" id="rating" required>
+              </div>
+            </div>
+            <div class="form-group mt-3">
               <label for="content" class="fs-5 fw-bold mb-1">내용</label>
               <textarea class="form-control h-25" rows="10" name="content" id="content" placeholder=
 "
