@@ -13,9 +13,9 @@
         <div class="post-box justify-content-start">
             <div class="d-flex justify-content-end">
                 @if(($post->user_id)===($user->id) || ($post->user_id)===('admin'))
-                    {{-- <button class="mt-3 ms-2 btn btn-info"
-                    type="button" data-bs-toggle="modal" data-bs-target="#infoEditModal">수정</button>
-                    <button class="mt-3 ms-2 btn btn-danger" type="submit"
+                    <button class="mt-3 ms-2 btn btn-info"
+                    type="button" data-bs-toggle="modal" data-bs-target="#reviewEditModal">수정</button>
+                    {{-- <button class="mt-3 ms-2 btn btn-danger" type="submit"
                         value="게시글삭제" data-id="{{$post->id}}" onclick="infoDelete(event)">삭제</button> --}}
                 @endif
             </div>
@@ -24,6 +24,19 @@
             </div>
             <div class="mt-2 ps-3">
                 <p class="fs-5 fw-bolder">작성자 : {{ $post->nickname }}</p>
+            </div>
+            <div class="mt-2 ps-3">
+                <span class="fs-3 fw-bolder pt-2 pb-2">평점 : </span>
+                <div class="d-flex justify-content-end">
+                    <div class="d-flex align-items-center">
+                        @for ($i = 0; $i < $post->star->rating; $i++)
+                            <p class="fs-4 pt-2 text-warning">★</p>
+                        @endfor
+                        @for ($i = 0; $i < (5 - $post->star->rating); $i++)
+                            <p class="fs-4 pt-2 text-black text-opacity-25">★</p>
+                        @endfor
+                    </div>
+                </div>
             </div>
             <div class="mt-2 mb-3">
                 <div class="text-center mb-3">
@@ -55,8 +68,9 @@
             </div>
         </div>
     </div>
-    {{-- @include('whisky/modal/reviewEditModal') --}}
+    @include('whisky/modal/reviewEditModal')
     @include('common/footer')
+    <script src="{{ asset('js/reviewPost/index.js') }}"></script>
     {{-- <script src="{{asset('/js/service/post/whisky/info.js')}}"></script> --}}
 </body>
 </html>

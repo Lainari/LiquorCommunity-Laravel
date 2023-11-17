@@ -54,6 +54,7 @@ Route::group(['middleware'=>'jwt.token'], function(){
         });
         Route::post('/review', [PostController::class, 'reviewCreate']);
         Route::get('/review/{id}', [PostController::class, 'reviewShow']);
+        Route::put('/review/{id}', [PostController::class, 'reviewUpdate']);
     });
     
     Route::prefix('recommend')->group(function () {

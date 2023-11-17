@@ -159,4 +159,40 @@ class PostController extends Controller
         return view('whisky/post/reviewPost', ['post' => $post, 'images' => $images, 'star' => $star]);
     }
 
+    // 위스키 리뷰 게시글 수정
+    public function reviewUpdate(Request $request, $id){
+        $post = Post::find($id);
+        $post->title = $request->input('title');
+        $post->content = $request->input('content');
+        $post->save();
+
+        $star = $post->star;
+        $star->rating = $request->input('rating');
+        $star->save();
+
+        if($request->hasFile('images'))
+        {
+            // 기존의 모든 이미지를 삭제
+            $oldImages = $post->images;
+            foreach($oldImages as $oldImage){
+                Storage::disk('public')->delete(str_replace('/storage/', '', $oldImage->path));
+                Storage::disk('local')->delete(str_replace('/storage/', '', $oldImage->path));
+                $oldImage->delete();
+            }
+    
+            // 새로운 이미지를 저장
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('image/whisky/review', 'public');
+                $path = Storage::url($path);
+    
+                $newImage = new Image();
+                $newImage->post_id = $post->id;
+                $newImage->path = $path;
+                $newImage->save();
+            }
+        }
+
+        return redirect('/whisky/review/'.$id);
+    }
+
 }
