@@ -195,4 +195,23 @@ class PostController extends Controller
         return redirect('/whisky/review/'.$id);
     }
 
+    // 위스키 리뷰 게시글 삭제
+    public function reviewDestroy($id){
+        $post = Post::find($id);
+
+        $star = $post->star;
+        if($star){
+            $star->delete();
+        }
+
+        $images = $post->images;
+        foreach($images as $image){
+            $imagePath = str_replace('/storage/', '', $image->path);
+            Storage::disk('public')->delete($imagePath);
+            $image->delete();
+        }
+
+        $post->delete();
+    }
+
 }
