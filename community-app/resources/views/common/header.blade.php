@@ -58,8 +58,9 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="위스키 정보 검색" aria-label="Search">
+                    <form class="d-flex" role="search" method="post" action="/whisky/search">
+                        @csrf
+                        <input class="form-control me-2" type="search" placeholder="위스키명으로 검색" aria-label="Search" name="query">
                         <button class="btn btn-warning" type="submit">Search</button>
                     </form>
                 </div>
@@ -72,3 +73,4 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{{asset('/js/service/logout/index.js')}}"></script>
+<script src="{{asset('/js/service/post/search/index.js')}}"></script>

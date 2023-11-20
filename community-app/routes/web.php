@@ -56,16 +56,18 @@ Route::group(['middleware'=>'jwt.token'], function(){
         Route::get('/review/{id}', [PostController::class, 'reviewShow']);
         Route::put('/review/{id}', [PostController::class, 'reviewUpdate']);
         Route::delete('/review/post/{id}', [PostController::class, 'reviewDestroy']);
+
+        Route::post('/search', [PostController::class, 'infoSearch']);
     });
     
-    Route::prefix('recommend')->group(function () {
-        Route::get('/bar', function() {
-            return view('recommend/bar');
-        });
-        Route::get('/shop', function() {
-            return view('recommend/shop');
-        });
-    });
+    // Route::prefix('recommend')->group(function () {
+    //     Route::get('/bar', function() {
+    //         return view('recommend/bar');
+    //     });
+    //     Route::get('/shop', function() {
+    //         return view('recommend/shop');
+    //     });
+    // });
     
     Route::prefix('mypage')->group(function () {
         Route::get('/info', function() {

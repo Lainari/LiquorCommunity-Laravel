@@ -11,6 +11,14 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
+    // 위스키 정보 검색
+    public function infoSearch(Request $request)
+    {
+        $query = $request->input('query');
+        $posts = Post::where('title', 'LIKE', "%{$query}%")->where('type', 'info')->get();
+        return view('whisky/search', ['posts' => $posts]);
+    }
+
     // 위스키 정보 게시글 생성
     public function infoCreate(Request $request){
         // 위스키정보 이미지 별도 저장

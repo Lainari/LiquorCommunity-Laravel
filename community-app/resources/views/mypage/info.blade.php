@@ -24,6 +24,7 @@
         </div>
     </div>
     <h2>▶작성한 글◀</h2>
+    {{-- 여기서는 $user와 post테이블 연계해야함 --}}
     @include('common/footer')
     <script src="{{asset('/js/service/account/withdrawal.js')}}"></script>
     <script type="module" src="{{ asset('js/service/signup/index.js') }}"></script>
