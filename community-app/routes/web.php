@@ -80,7 +80,8 @@ Route::group(['middleware'=>'jwt.token'], function(){
     
     Route::prefix('manager')->group(function() {
         Route::get('/approve', function(){
-            return view('manager/approve');
+            $posts = Post::where('approve', 0)->get();
+            return view('manager/approve', ['posts' => $posts]);
         });
     });
 });

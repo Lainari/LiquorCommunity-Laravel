@@ -18,6 +18,7 @@
     <div class="d-flex justify-content-center">
         <div class="d-flex flex-column" style="width:90%">
             @foreach ($posts as $post)
+            @if ($post->approve > 0)
             <div class="d-flex">
                 <div class="post justify-content-start mt-3">
                     <a href="/whisky/review/{{ $post->id }}">
@@ -39,6 +40,7 @@
                     </div>
                 </div>
             </div>
+            @endif
             @endforeach
         </div>
     </div>

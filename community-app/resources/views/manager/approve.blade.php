@@ -8,7 +8,13 @@
 </head>
 <body>
     @include('common/header')
-    게시글 승인 페이지
+    @foreach ($posts as $post)
+        {{$post->title}}
+        <br>
+        작성자 / {{$post->user->nickname}}
+        <br>
+        <br>
+    @endforeach
     @include('common/footer')
 </body>
 </html>

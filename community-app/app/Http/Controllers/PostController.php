@@ -15,7 +15,7 @@ class PostController extends Controller
     public function infoSearch(Request $request)
     {
         $query = $request->input('query');
-        $posts = Post::where('title', 'LIKE', "%{$query}%")->where('type', 'info')->get();
+        $posts = Post::where('title', 'LIKE', "%{$query}%")->where('approve', 1)->where('type', 'info')->get();
         return view('whisky/search', ['posts' => $posts]);
     }
 
@@ -56,6 +56,9 @@ class PostController extends Controller
     // 위스키 정보 게시글별 페이지 로드
     public function infoShow($id){
         $post = Post::find($id);
+        if($post === null || $post->type != 'info' || $post->approve != 1) {
+            abort(404);
+        }
         $whisky = $post->whisky;
         $images = $post->images;
 
