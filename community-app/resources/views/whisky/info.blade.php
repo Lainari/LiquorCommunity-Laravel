@@ -18,15 +18,17 @@
     <div class="d-flex justify-content-center">
         <div class="d-flex flex-column" style="width:90%">
             @foreach ($posts as $post)
-            <div class="post justify-content-start mt-3">
-                <a href="/whisky/info/{{ $post->id }}">
-                    <img class="img-thumbnail thumbnail mt-1" src="{{ $post->images->first() ? asset($post->images->first()->path) : asset('image/none-image.svg') }}">
-                </a>
-                <div class="m-2">
-                    <a class="post-title fs-4 fw-bolder" href="/whisky/info/{{ $post->id }}">{{ $post->title }}</a>
-                    <p class="post-writer">작성자 / {{ $post->nickname }}</p>
+            @if ($post->approve > 0)
+                <div class="post justify-content-start mt-3">
+                    <a href="/whisky/info/{{ $post->id }}">
+                        <img class="img-thumbnail thumbnail mt-1" src="{{ $post->images->first() ? asset($post->images->first()->path) : asset('image/none-image.svg') }}">
+                    </a>
+                    <div class="m-2">
+                        <a class="post-title fs-4 fw-bolder" href="/whisky/info/{{ $post->id }}">{{ $post->title }}</a>
+                        <p class="post-writer">작성자 / {{ $post->nickname }}</p>
+                    </div>
                 </div>
-            </div>
+            @endif
             @endforeach
         </div>
     </div>
