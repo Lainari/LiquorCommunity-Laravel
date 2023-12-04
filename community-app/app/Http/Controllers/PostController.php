@@ -225,4 +225,13 @@ class PostController extends Controller
         $post->delete();
     }
 
+    // 위스키 게시물 승인
+    public function approve($id){
+        $post = Post::find($id);
+        $post->approve = 1;
+        $post->save();
+
+        return redirect('/manager/approve');
+    }
+
 }

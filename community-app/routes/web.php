@@ -59,29 +59,22 @@ Route::group(['middleware'=>'jwt.token'], function(){
 
         Route::post('/search', [PostController::class, 'infoSearch']);
     });
-    
-    // Route::prefix('recommend')->group(function () {
-    //     Route::get('/bar', function() {
-    //         return view('recommend/bar');
-    //     });
-    //     Route::get('/shop', function() {
-    //         return view('recommend/shop');
-    //     });
-    // });
-    
+
     Route::prefix('mypage')->group(function () {
         Route::get('/info', function() {
-            return view('mypage/info');
+            $posts = Post::where('user_id', auth()->id())->get();
+            return view('mypage/info', ['posts' => $posts]);
         });
         Route::put('/account/edit', [UserController::class, 'update']);
         Route::delete('/account/withdrawal', [UserController::class, 'destroy']);
     });
-
     
     Route::prefix('manager')->group(function() {
         Route::get('/approve', function(){
             $posts = Post::where('approve', 0)->get();
             return view('manager/approve', ['posts' => $posts]);
         });
+
+        Route::put('/approve/{id}',[PostController::class, 'approve']);
     });
 });
