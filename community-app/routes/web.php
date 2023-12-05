@@ -75,6 +75,7 @@ Route::group(['middleware'=>'jwt.token'], function(){
             return view('manager/approve', ['posts' => $posts]);
         });
 
-        Route::put('/approve/{id}',[PostController::class, 'approve']);
+        Route::put('/approve/{id}',[PostController::class, 'approveSuccess']);
+        Route::delete('/approve/{id}',[PostController::class, 'approveDenied']);
     });
 });
