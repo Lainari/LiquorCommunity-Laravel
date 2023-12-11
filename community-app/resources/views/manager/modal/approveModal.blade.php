@@ -91,7 +91,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-            <button type="button" class="btn btn-danger">반려</button>
+            <button type="button" class="btn btn-danger" data-id="{{ $post->id }}">반려</button>
             <button type="submit" class="btn btn-primary">승인</button>
         </div>
         </div>
