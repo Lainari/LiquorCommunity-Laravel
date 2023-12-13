@@ -15,7 +15,7 @@
                 @if(($post->user_id)===($user->id) || ($post->user_id)===('admin'))
                     <button class="mt-3 ms-2 btn btn-info"
                     type="button" data-bs-toggle="modal" data-bs-target="#infoEditModal">수정</button>
-                    <button class="mt-3 ms-2 btn btn-danger" type="submit"
+                    <button class="mt-3 ms-2 me-2 btn btn-danger" type="submit"
                         value="게시글삭제" data-id="{{$post->id}}" onclick="infoDelete(event)">삭제</button>
                 @endif
             </div>

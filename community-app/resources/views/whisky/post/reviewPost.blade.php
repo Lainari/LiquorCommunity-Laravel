@@ -15,7 +15,7 @@
                 @if(($post->user_id)===($user->id) || ($post->user_id)===('admin'))
                     <button class="mt-3 ms-2 btn btn-info"
                     type="button" data-bs-toggle="modal" data-bs-target="#reviewEditModal">수정</button>
-                    <button class="mt-3 ms-2 btn btn-danger" type="submit"
+                    <button class="mt-3 ms-2 me-2 btn btn-danger" type="submit"
                         value="게시글삭제" data-id="{{$post->id}}" onclick="infoDelete(event)">삭제</button>
                 @endif
             </div>
@@ -26,9 +26,9 @@
                 <p class="fs-5 fw-bolder">작성자 : {{ $post->nickname }}</p>
             </div>
             <div class="mt-2 ps-3">
-                <span class="fs-3 fw-bolder pt-2 pb-2">평점 : </span>
-                <div class="d-flex justify-content-end">
-                    <div class="d-flex align-items-center">
+                <div class="d-flex">
+                    <span class="fs-3 fw-bolder pt-2 pb-2">평점 : </span>
+                    <div class="d-flex ms-2 justify-content-start">
                         @for ($i = 0; $i < $post->star->rating; $i++)
                             <p class="fs-4 pt-2 text-warning">★</p>
                         @endfor

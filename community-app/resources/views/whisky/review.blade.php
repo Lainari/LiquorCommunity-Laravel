@@ -17,31 +17,37 @@
     </div>
     <div class="d-flex justify-content-center">
         <div class="d-flex flex-column" style="width:90%">
-            @foreach ($posts as $post)
-            @if ($post->approve > 0)
-            <div class="d-flex">
-                <div class="post justify-content-start mt-3">
-                    <a href="/whisky/review/{{ $post->id }}">
-                        <img class="img-thumbnail thumbnail mt-1" src="{{ $post->images->first() ? asset($post->images->first()->path) : asset('image/none-image.svg') }}">
-                    </a>
-                    <div class="m-2">
-                        <a class="post-title fs-4 fw-bolder" href="/whisky/review/{{ $post->id }}">{{ $post->title }}</a>
-                        <p class="post-writer">작성자 / {{ $post->nickname }}</p>
+            @php
+                $approvedPosts = $posts->filter(function($post) {
+                    return $post->approve > 0;
+                });
+            @endphp
+            @forelse ($approvedPosts as $post)
+                <div class="d-flex">
+                    <div class="post justify-content-start mt-3">
+                        <a href="/whisky/review/{{ $post->id }}">
+                            <img class="img-thumbnail thumbnail mt-1" src="{{ $post->images->first() ? asset($post->images->first()->path) : asset('image/none-image.svg') }}">
+                        </a>
+                        <div class="m-2">
+                            <a class="post-title fs-4 fw-bolder" href="/whisky/review/{{ $post->id }}">{{ $post->title }}</a>
+                            <p class="post-writer">작성자 / {{ $post->nickname }}</p>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <div class="d-flex align-items-center">
+                            @for ($i = 0; $i < $post->star->rating; $i++)
+                                <p class="fs-4 pt-2 text-warning">★</p>
+                            @endfor
+                            @for ($i = 0; $i < (5 - $post->star->rating); $i++)
+                                <p class="fs-4 pt-2 text-black text-opacity-25">★</p>
+                            @endfor
+                        </div>
                     </div>
                 </div>
-                <div class="d-flex justify-content-end">
-                    <div class="d-flex align-items-center">
-                        @for ($i = 0; $i < $post->star->rating; $i++)
-                            <p class="fs-4 pt-2 text-warning">★</p>
-                        @endfor
-                        @for ($i = 0; $i < (5 - $post->star->rating); $i++)
-                            <p class="fs-4 pt-2 text-black text-opacity-25">★</p>
-                        @endfor
-                    </div>
-                </div>
-            </div>
-            @endif
-            @endforeach
+            @empty
+                <p class="fs-3 mt-2 fw-bolder">게시물이 존재하지 않습니다</p>
+                <p class="fs-5 mb-4">가장 먼저 위스키 리뷰를 등록해보시겠어요?</p>
+            @endforelse
         </div>
     </div>
 
