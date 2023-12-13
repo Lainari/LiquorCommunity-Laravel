@@ -236,6 +236,14 @@ class PostController extends Controller
     // 위스키 게시물 반려
     public function approveDenied($id){
         $post = Post::find($id);
+
+        $images = $post->images;
+        foreach($images as $image){
+            $imagePath = str_replace('/storage/', '', $image->path);
+            Storage::disk('public')->delete($imagePath);
+            $image->delete();
+        }
+        
         $post->delete();
     }
 
