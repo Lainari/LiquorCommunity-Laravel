@@ -1,8 +1,9 @@
 import React from 'react';
-import mainImage from '../../../public/image/main/KakaoTalk_20231026_193719601.jpg';
 import './css/main.css';
-import Header from './common/Header'
+import Header from './common/Header';
 import Footer from './common/Footer';
+
+const mainImage = './image/main/KakaoTalk_20231026_193719601.jpg';
 
 const MainPage: React.FC = () => {
     return (
