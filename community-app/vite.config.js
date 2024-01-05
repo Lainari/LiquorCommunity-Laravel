@@ -1,14 +1,12 @@
 import { defineConfig } from 'vite';
 import reactRefresh from '@vitejs/plugin-react-refresh';
-import pkg from 'laravel-vite'
-import { resolve } from 'path'
-
-const { laravelVite } = pkg;
+import laravelVite from 'laravel-vite';
+import { resolve } from 'path';
 
 export default defineConfig(({ command }) => ({
   plugins: [
     reactRefresh(),
-    laravelVite({
+    laravelVite.default({
       enableHmr: command === 'serve',
       entry: 'resources/js/app.tsx'
     }),
