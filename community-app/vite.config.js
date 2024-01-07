@@ -1,24 +1,13 @@
 import { defineConfig } from 'vite';
-import reactRefresh from '@vitejs/plugin-react-refresh';
-import laravelVite from 'laravel-vite';
-import { resolve } from 'path';
+import laravel from 'laravel-vite-plugin';
+import react from '@vitejs/plugin-react';
 
-export default defineConfig(({ command }) => ({
-  plugins: [
-    reactRefresh(),
-    laravelVite.default({
-      enableHmr: command === 'serve',
-      entry: 'resources/js/app.tsx'
-    }),
-  ],
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: `@import "${resolve(__dirname, 'resources/css')}/app.scss";`
-      }
-    }
-  },
-  server: {
-    port: 3000
-  }
-}));
+export default defineConfig({
+    plugins: [
+        react(), // React plugin that we installed for vite.js
+        laravel({
+            input: ['resources/css/app.css', 'resources/js/app.tsx'],
+            refresh: true,
+        }),
+    ],
+});
