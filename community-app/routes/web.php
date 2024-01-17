@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,5 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return ['Laravel' => app()->version()];
 });
+
+// 테스트 : 관리자 닉네임 찾기
+Route::get('/api/admin/nickname', [UserController::class, 'getAdminNickname']);
 
 require __DIR__.'/auth.php';
