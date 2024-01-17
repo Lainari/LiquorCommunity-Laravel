@@ -99,4 +99,11 @@ class UserController extends Controller
         $response = response()->json(['message' => '로그아웃 성공']);
         return $response->withoutCookie('token');
     }
+
+    // 테스트 : 관리자 닉네임 찾기
+    public function getAdminNickname()
+    {
+        $admin = User::where('isAdmin', 1)->first();
+        return response()->json($admin->nickname);
+    }
 }
