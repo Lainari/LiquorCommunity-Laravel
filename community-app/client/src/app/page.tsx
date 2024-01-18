@@ -1,34 +1,23 @@
-'use client';
+// 'use client';
 
 import React, { useEffect, useState } from 'react';
 import { NextPage } from 'next';
 import Image from 'next/image';
 import RootLayout from './layout';
-import { getAdminNickname } from '../services';
+// import { getAdminNickname } from '../services';
 
 const Home: NextPage = () => {
-  const [adminNickname, setAdminNickname] = useState('');
+  // const [adminNickname, setAdminNickname] = useState('');
 
-  useEffect(() => {
-    getAdminNickname().then(data => setAdminNickname(data));
-  }, []);
+  // useEffect(() => {
+  //   getAdminNickname().then(data => setAdminNickname(data));
+  // }, []);
 
   return (
-    <RootLayout>
-      <div className="container mx-auto">
-        <div className="flex justify-between my-4">
-          <div className="w-1/2">
-            <h2 className="text-2xl">What is WhiskyCommunity?</h2>
-            <p className="my-4">
-              데이터 베이스 확인
-            </p>
-          </div>
-          <div className="w-1/2">
-            관리자 명 : {adminNickname}
-          </div>
-        </div>
-      </div>
-    </RootLayout>
+    <>
+      <h2 className='mb-3 text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-5xl'>Welcome to WhiskyCommunity</h2>
+      Hello, User!
+    </>
   );
 };
 
