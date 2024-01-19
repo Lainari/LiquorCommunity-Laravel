@@ -12,20 +12,20 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <body>
-        <h1 className='mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl'><a href="/">WhiskyCommunity</a></h1>
-        <ol>
-          <li>
-            <a href="/whisky">whisky</a>
-          </li>
-          <li>
-            <a href="/review">review</a>
-          </li>
-          <li>
-            <a href="/mypage">mypage</a>
-          </li>
-        </ol>
-        {children}
+      <body className="bg-gray-100 min-h-screen font-sans text-gray-900">
+        <header className="bg-white shadow-sm py-4">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+            <h1 className='text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl'><a href="/">WhiskyCommunity</a></h1>
+            <nav className="flex space-x-10">
+              <a href="/whisky" className="text-gray-500 hover:text-gray-900">Whisky</a>
+              <a href="/review" className="text-gray-500 hover:text-gray-900">Review</a>
+              <a href="/mypage" className="text-gray-500 hover:text-gray-900">My Page</a>
+            </nav>
+          </div>
+        </header>
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+          {children}
+        </main>
       </body>
     </html>
   );
