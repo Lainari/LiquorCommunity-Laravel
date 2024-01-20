@@ -15,11 +15,11 @@ export default function RootLayout({
       <body className="bg-gray-100 min-h-screen font-sans text-gray-900">
         <header className="bg-white shadow-sm py-4">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-            <h1 className='text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl'><a href="/">WhiskyCommunity</a></h1>
+            <h1 className='text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-5xl mb-2'><a href="/">WhiskyCommunity</a></h1>
             <nav className="flex space-x-10">
-              <a href="/whisky" className="text-gray-500 hover:text-gray-900">Whisky</a>
-              <a href="/review" className="text-gray-500 hover:text-gray-900">Review</a>
-              <a href="/mypage" className="text-gray-500 hover:text-gray-900">My Page</a>
+              <a href="/whisky" className="text-lg text-gray-500 hover:text-gray-900">Whisky</a>
+              <a href="/review" className="text-lg text-gray-500 hover:text-gray-900">Review</a>
+              <a href="/mypage" className="text-lg text-gray-500 hover:text-gray-900">My Page</a>
             </nav>
           </div>
         </header>
