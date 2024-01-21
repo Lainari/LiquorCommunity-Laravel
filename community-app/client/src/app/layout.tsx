@@ -13,21 +13,21 @@ export default function RootLayout({
   return (
     <html>
       <body className="bg-gray-100 min-h-screen font-sans text-gray-900">
-        <header className="bg-white shadow-sm py-4">
+        <header className="bg-white shadow-sm py-4 bg-slate-300">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
             <h1 className='text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-5xl mb-2'><a href="/">WhiskyCommunity</a></h1>
             <div className="ml-10">
               <input className="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-52 py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="search" placeholder="Search"/>
             </div>
           </div>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-5 flex justify-between items-center">
-            <nav className="flex space-x-10">
-              <a href="/whisky" className="text-lg text-gray-500 hover:text-gray-900">Whisky</a>
-              <a href="/review" className="text-lg text-gray-500 hover:text-gray-900">Review</a>
-              <a href="/mypage" className="text-lg text-gray-500 hover:text-gray-900">My Page</a>
-            </nav>
-          </div>
         </header>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-2 flex justify-between items-center">
+          <nav className="flex space-x-10">
+            <a href="/whisky" className="text-lg text-gray-500 hover:text-gray-900">Whisky</a>
+            <a href="/review" className="text-lg text-gray-500 hover:text-gray-900">Review</a>
+            <a href="/mypage" className="text-lg text-gray-500 hover:text-gray-900">My Page</a>
+          </nav>
+        </div>
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
           {children}
         </main>
