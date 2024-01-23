@@ -13,9 +13,9 @@ export default function RootLayout({
   return (
     <html>
       <body className="bg-gray-100 min-h-screen font-sans text-gray-900">
-        <header className="bg-white shadow-sm py-4 bg-slate-300">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-            <h1 className='text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-5xl mb-2'><a href="/">WhiskyCommunity</a></h1>
+        <header className="bg-white shadow-sm bg-slate-300">
+          <div className="flex justify-between items-center py-2 px-6 h-16 w-full bg-slate-900 text-white z-30 relative">
+            <h1 className='text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-5xl mb-2'><a href="/">WhiskyCommunity</a></h1>
             <div className="ml-10">
               <input className="rounded-lg border-transparent flex-1 appearance-none border border-gray-500 w-52 py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="search" placeholder="Search"/>
             </div>

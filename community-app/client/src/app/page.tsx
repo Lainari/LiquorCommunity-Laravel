@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import { NextPage } from 'next';
 import Image from 'next/image';
-import RootLayout from './layout';
 // import { getAdminNickname } from '../services';
 
 const Home: NextPage = () => {
@@ -15,8 +14,8 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <h2 className='mb-3 text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-5xl'>Welcome to WhiskyCommunity</h2>
-      Hello, User!
+      <h2 className='mb-3 text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-4xl'>Welcome to WhiskyCommunity</h2>
+      if you want enjoy our website, signin first!
     </>
   );
 };
