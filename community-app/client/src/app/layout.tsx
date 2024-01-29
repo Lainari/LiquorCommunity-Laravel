@@ -1,4 +1,4 @@
-import '@/styles/globals.css'
+import '../styles/globals.css'
 import { Mainicon } from '../../public/svgs/index'
 
 export const metadata = {
@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <html>
       <body className="bg-gray-100 min-h-screen font-sans text-gray-900">
-      <header className="bg-white shadow-sm bg-slate-300">
+      {/* <header className="bg-white shadow-sm bg-slate-300">
           <div className="flex justify-between items-center py-4 px-24 w-full bg-white text-white z-30 relative">
             <nav className="flex space-x-10">
               <a href="/whisky" className="text-xl text-black hover:text-gray-500">Whisky</a>
@@ -29,7 +29,7 @@ export default function RootLayout({
               <input className="rounded-lg border flex-1 appearance-none border border-gray-500 w-52 py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="search" placeholder="Search"/>
             </div>
           </div>
-        </header>
+        </header> */}
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
           {children}
         </main>

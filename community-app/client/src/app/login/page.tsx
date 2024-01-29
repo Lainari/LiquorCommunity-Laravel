@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 export default function Login(){
     return (
         <>
@@ -34,7 +36,14 @@ export default function Login(){
                         </form>
                     </div>
                 </div>
-                <img className="flex sm:max-w-md rounded-lg shadow border md:mt-0 xl:p-0" src="/images/loginImage.png" alt="LoginImage" />
+                {/* <img className="flex sm:max-w-md rounded-lg shadow border md:mt-0 xl:p-0" src="/images/loginImage.png" alt="LoginImage" /> */}
+                <Image
+                    className="flex sm:max-w-md rounded-lg shadow border md:mt-0 xl:p-0"
+                    src="/images/loginImage.png"
+                    width={500}
+                    height={500}
+                    alt="LoginImage"
+                />
             </div>
         </>
     )

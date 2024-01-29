@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "next-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,14 +10,17 @@
   },
   "dependencies": {
     "next": "14.0.4",
+    "pspdfkit": "^2024.1.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-modal": "^3.16.1",
+    "react-pdf": "^7.6.0"
   },
   "devDependencies": {
-    "@svgr/webpack": "^8.1.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-modal": "^3.16.3",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
