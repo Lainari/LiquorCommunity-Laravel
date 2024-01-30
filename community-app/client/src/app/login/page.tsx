@@ -36,7 +36,6 @@ export default function Login(){
                         </form>
                     </div>
                 </div>
-                {/* <img className="flex sm:max-w-md rounded-lg shadow border md:mt-0 xl:p-0" src="/images/loginImage.png" alt="LoginImage" /> */}
                 <Image
                     className="flex sm:max-w-md rounded-lg shadow border md:mt-0 xl:p-0"
                     src="/images/loginImage.png"
