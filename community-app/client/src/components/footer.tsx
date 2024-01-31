@@ -20,6 +20,7 @@ export default function Footer(){
                 </div>
                 <p className="mt-6 text-sm text-slate-500 sm:mt-0">
                     Copyright Jinseok Seok All rights reserved.
+                    Jinseokgay
                 </p>
             </div>
         </footer>
