@@ -1,8 +1,12 @@
 {
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "react"
+  ],
   "extends": [
     "./node_modules/gts/",
-    "next/core-web-vitals",
-    "next/babel"
+    "next/core-web-vitals"
   ],
   "rules": {
     "react/react-in-jsx-scope": "off",
