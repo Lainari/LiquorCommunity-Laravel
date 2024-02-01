@@ -1,7 +1,3 @@
-export default function Mypage(){
-    return (
-        <>
-            Mypage Page
-        </>
-    )
+export default function Mypage() {
+  return <>Mypage Page</>;
 }

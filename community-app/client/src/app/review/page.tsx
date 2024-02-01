@@ -1,7 +1,3 @@
-export default function Review(){
-    return (
-        <>
-            Review Page
-        </>
-    )
+export default function Review() {
+  return <>Review Page</>;
 }

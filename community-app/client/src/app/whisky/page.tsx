@@ -1,7 +1,3 @@
-export default function Whisky(){
-    return (
-        <>
-            Whisky Page
-        </>
-    )
+export default function Whisky() {
+  return <>Whisky Page</>;
 }
