@@ -1,3 +1,12 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "./node_modules/gts/",
+    "next/core-web-vitals",
+    "next/babel"
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "prettier/prettier": ["error", {"endOfLine": "auto"}],
+    "node/no-unpublished-import": "off"
+  }
 }
