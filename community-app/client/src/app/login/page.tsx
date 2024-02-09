@@ -1,6 +1,23 @@
+'use client';
+import {useEffect} from 'react';
 import Image from 'next/image';
 
 export default function Login() {
+  const handleGoogleLogin = () => {
+    window.location.href = 'http://localhost:8000/login';
+  };
+
+  useEffect(() => {
+    const loginButton = document.getElementById('googleLoginButton');
+    if (loginButton) {
+      loginButton.addEventListener('click', handleGoogleLogin);
+
+      return () => {
+        loginButton.removeEventListener('click', handleGoogleLogin);
+      };
+    }
+  }, []);
+
   return (
     <>
       <div className="flex justify-center items-center">
@@ -9,6 +26,12 @@ export default function Login() {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
               Sign in to your account
             </h1>
+            <button
+              id="googleLoginButton"
+              className="w-full text-white bg-black hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+            >
+              Sign in with Google
+            </button>
             <form className="space-y-4 md:space-y-6" action="#">
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900">
