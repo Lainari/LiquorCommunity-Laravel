@@ -49,6 +49,6 @@ class LoginController extends Controller
             Auth::login($existingUser);
         }
 
-        return redirect('/'); // Redirect to home page after successful login
+        return redirect('http://localhost:3000'); // Redirect to home page after successful login
     }
 }
