@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class LoginController extends Controller
 {
@@ -45,10 +46,18 @@ class LoginController extends Controller
             $newUser->save();
 
             Auth::login($newUser);
+            $user = $newUser;
         } else {
             Auth::login($existingUser);
+            $user = $existingUser;
         }
+        // JWT Token Create
+        $token = JWTAuth::fromUser($user);
 
-        return redirect('http://localhost:3000'); // Redirect to home page after successful login
+        // Save in cookie
+        $cookie = cookie('jwt', $token, 60); // 60min Valid
+
+        // Redirect with Cookie
+        return redirect('http://localhost:3000')->withCookie($cookie);
     }
 }
