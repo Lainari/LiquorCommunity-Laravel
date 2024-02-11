@@ -23,6 +23,7 @@ Route::get('/', function () {
 Route::get('/api/admin/nickname', [UserController::class, 'getAdminNickname']);
 
 Route::get('login', [LoginController::class, 'redirectToGoogle'])->name('login.google');
-Route::get('http://localhost:3000', [LoginController::class, 'handleGoogleCallback']);
+Route::get('login/callback', [LoginController::class, 'handleGoogleCallback']);
+Route::get('clear', [LoginController::class, 'clear']);
 
 require __DIR__.'/auth.php';

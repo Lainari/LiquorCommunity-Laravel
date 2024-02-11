@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-// use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class LoginController extends Controller
@@ -31,7 +32,8 @@ class LoginController extends Controller
         try {
             $googleUser = Socialite::driver('google')->user();
         } catch (\Exception $e) {
-            return redirect('/login')->withErrors('Unable to authenticate with Google.');
+            Log::error('Google login error: ' . $e->getMessage());
+            return redirect('http://localhost:3000')->withErrors('Unable to authenticate with Google.');
         }
 
         // Check if the user exists
@@ -58,6 +60,11 @@ class LoginController extends Controller
         $cookie = cookie('jwt', $token, 60); // 60min Valid
 
         // Redirect with Cookie
-        return redirect('http://localhost:3000')->withCookie($cookie);
+        return redirect('/clear')->withCookie($cookie);
+    }
+
+    public function clear(Request $request)
+    {
+        return redirect('http://localhost:3000');
     }
 }
