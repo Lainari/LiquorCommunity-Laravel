@@ -1,7 +1,10 @@
 import Image from 'next/image';
+import {cookies} from 'next/headers';
 import Mainicon from '../../public/svgs/whisky-whiskey-svgrepo-com.svg';
+import {Login, Logout} from '.';
 
 export default function Header() {
+  const token = cookies().has('XSRF-TOKEN');
   return (
     <header className="bg-white shadow-sm bg-slate-300">
       <div className="mx-auto max-w-[2024px] px-0 md:px-12 lg:px-11 xl:px-16">
@@ -28,15 +31,19 @@ export default function Header() {
             >
               Review
             </a>
-            <a href="/login" className="text-xl text-black hover:text-gray-500">
-              Login
-            </a>
-            <a
-              href="/mypage"
-              className="text-xl text-black hover:text-gray-500"
-            >
-              My Page
-            </a>
+            {token ? (
+              <>
+                <Logout />
+                <a
+                  href="/mypage"
+                  className="text-xl text-black hover:text-gray-500"
+                >
+                  My Page
+                </a>
+              </>
+            ) : (
+              <Login />
+            )}
           </nav>
           <div className="ml-6 justify-self-end max-sm:hidden">
             <input
