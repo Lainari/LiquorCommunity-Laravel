@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Log;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -66,5 +67,14 @@ class LoginController extends Controller
     public function clear(Request $request)
     {
         return redirect('http://localhost:3000');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $cookie = Cookie::forget('jwt');
+
+        return redirect('http://localhost:3000')->withCooke($cookie);
     }
 }
