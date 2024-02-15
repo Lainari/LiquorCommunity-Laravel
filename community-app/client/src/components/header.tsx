@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import {cookies} from 'next/headers';
-import Mainicon from '../../public/svgs/whisky-whiskey-svgrepo-com.svg';
+import Mainicon from '/public/svgs/whisky-whiskey-svgrepo-com.svg';
 import {Login, Logout} from '.';
 
 export default function Header() {
