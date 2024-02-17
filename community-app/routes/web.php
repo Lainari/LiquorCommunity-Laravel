@@ -26,14 +26,11 @@ Route::get('csrf-cookie', function () {
     ]);
 });
 
-// 테스트 : 관리자 닉네임 찾기
 Route::get('/api/admin/nickname', [UserController::class, 'getAdminNickname']);
 
 Route::get('login', [LoginController::class, 'redirectToGoogle'])->name('login.google');
 Route::get('login/callback', [LoginController::class, 'handleGoogleCallback']);
 Route::get('clear', [LoginController::class, 'clear']);
-
-// logoutRequest
 Route::post('logout', [LoginController::class, 'logout']);
 
 require __DIR__.'/auth.php';
