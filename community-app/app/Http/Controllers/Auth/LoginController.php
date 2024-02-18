@@ -75,6 +75,6 @@ class LoginController extends Controller
 
         $cookie = Cookie::forget('jwt');
 
-        return redirect('http://localhost:3000')->withCooke($cookie);
+        return redirect('http://localhost:3000')->withCookie($cookie);
     }
 }
