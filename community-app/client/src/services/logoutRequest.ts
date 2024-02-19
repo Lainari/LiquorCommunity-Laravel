@@ -9,9 +9,10 @@ export default async function logoutRequest() {
   const response = await fetch('http://localhost:8000/logout', {
     method: 'POST',
     headers: {
-      'X-CSRF-Token': csrfToken,
+      'X-CSRF-TOKEN': csrfToken,
     },
     credentials: 'include',
+    mode: 'cors',
   });
 
   console.log(response);
