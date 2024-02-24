@@ -15,10 +15,6 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return ['Laravel' => app()->version()];
-});
-
 // CSRF 토큰을 제공하는 라우트
 Route::get('csrf-cookie', function () {
     return response()->json([
