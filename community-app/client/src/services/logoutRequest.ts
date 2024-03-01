@@ -1,19 +1,17 @@
-async function getCsrfToken() {
-  const response = await fetch('http://localhost:8000/csrf-cookie');
-  const data = await response.json();
-  return data.csrfToken;
-}
+import axios from 'axios';
+
+axios.defaults.withCredentials = true;
+axios.defaults.xsrfCookieName = 'XSRF-TOKEN';
+axios.defaults.xsrfHeaderName = 'X-CSRF-TOKEN';
 
 export default async function logoutRequest() {
-  const csrfToken = await getCsrfToken();
-  const response = await fetch('http://localhost:8000/logout', {
-    method: 'POST',
-    headers: {
-      'X-CSRF-TOKEN': csrfToken,
-    },
-    credentials: 'include',
-    mode: 'cors',
-  });
+  const response = await axios.post(
+    'http://localhost:8000/logout',
+    {},
+    {
+      withCredentials: true,
+    }
+  );
 
   console.log(response);
 
