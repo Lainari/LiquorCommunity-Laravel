@@ -1,6 +1,6 @@
-import Footer from './footer';
-import Header from './header';
-import Login from './login';
-import Logout from './logout';
+import Footer from './Footer';
+import Header from './Header';
+import Login from './Login';
+import Logout from './Logout';
 
 export {Header, Footer, Login, Logout};
