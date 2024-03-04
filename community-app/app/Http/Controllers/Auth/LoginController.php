@@ -43,8 +43,10 @@ class LoginController extends Controller
         // If user doesn't exist, create a new one
         if (!$existingUser) {
             $newUser = new User();
+            $newUser->user_id = $googleUser->getId();
             $newUser->name = $googleUser->getName();
             $newUser->email = $googleUser->getEmail();
+            $newUser->birthday = '1999-10-21';
             $newUser->password = ''; // Password not required for OAuth login
             $newUser->save();
 
@@ -64,12 +66,12 @@ class LoginController extends Controller
         return redirect('/clear')->withCookie($cookie);
     }
 
-    public function clear(Request $request)
+    public function clear()
     {
         return redirect('http://localhost:3000');
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
         Auth::logout();
 
