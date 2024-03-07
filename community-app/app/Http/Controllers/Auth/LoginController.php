@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -74,9 +73,6 @@ class LoginController extends Controller
     public function logout()
     {
         Auth::logout();
-
-        $cookie = Cookie::forget('jwt');
-
-        return redirect('http://localhost:3000')->withCookie($cookie);
+        return redirect('http://localhost:3000')->withCookie('jwt', '')->get('/');
     }
 }
