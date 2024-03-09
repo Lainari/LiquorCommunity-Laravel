@@ -13,7 +13,6 @@ export default async function logoutRequest() {
   console.log(response);
 
   if (response.status >= 200 && response.status < 300) {
-    deleteCookie('jwt');
     deleteCookie('laravel_session');
     deleteCookie('XSRF-TOKEN');
 

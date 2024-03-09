@@ -58,11 +58,8 @@ class LoginController extends Controller
         // JWT Token Create
         $token = JWTAuth::fromUser($user);
 
-        // Save in cookie
-        $cookie = cookie('jwt', $token, 60); // 60min Valid
-
         // Redirect with Cookie
-        return redirect('/clear')->withCookie($cookie);
+        return redirect('/clear')->withCookie($token);
     }
 
     public function clear()
