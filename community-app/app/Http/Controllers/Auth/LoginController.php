@@ -70,6 +70,6 @@ class LoginController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect('http://localhost:3000')->withCookie('jwt', '')->get('/');
+        return redirect('http://localhost:3000');
     }
 }
