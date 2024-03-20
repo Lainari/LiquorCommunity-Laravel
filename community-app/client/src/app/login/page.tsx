@@ -15,6 +15,8 @@ export default function Login() {
       return () => {
         loginButton.removeEventListener('click', handleGoogleLogin);
       };
+    } else {
+      return;
     }
   }, []);
 
