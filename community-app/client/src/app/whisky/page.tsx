@@ -1,3 +1,5 @@
-export default function Whisky() {
+const Whisky = () => {
   return <>Whisky Page</>;
-}
+};
+
+export default Whisky;

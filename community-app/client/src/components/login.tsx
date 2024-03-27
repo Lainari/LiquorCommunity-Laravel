@@ -1,4 +1,4 @@
-export default function Login() {
+const Login = () => {
   return (
     <>
       <a href="/login" className="text-xl text-black hover:text-gray-500">
@@ -6,4 +6,6 @@ export default function Login() {
       </a>
     </>
   );
-}
+};
+
+export default Login;

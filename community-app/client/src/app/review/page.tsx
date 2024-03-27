@@ -1,3 +1,5 @@
-export default function Review() {
+const Review = () => {
   return <>Review Page</>;
-}
+};
+
+export default Review;

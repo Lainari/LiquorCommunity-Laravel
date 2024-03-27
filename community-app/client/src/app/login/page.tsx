@@ -2,7 +2,7 @@
 import {useEffect} from 'react';
 import Image from 'next/image';
 
-export default function Login() {
+const Login = () => {
   const handleGoogleLogin = () => {
     window.location.href = 'http://localhost:8000/login';
   };
@@ -49,4 +49,6 @@ export default function Login() {
       </div>
     </>
   );
-}
+};
+
+export default Login;

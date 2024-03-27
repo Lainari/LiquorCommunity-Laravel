@@ -2,7 +2,7 @@
 
 import {LogoutRequest} from '@/services';
 
-export default function Logout() {
+const Logout = () => {
   const handleLogout = async () => {
     const response = await LogoutRequest();
 
@@ -25,4 +25,6 @@ export default function Logout() {
       Logout
     </button>
   );
-}
+};
+
+export default Logout;

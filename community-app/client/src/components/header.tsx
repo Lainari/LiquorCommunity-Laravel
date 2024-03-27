@@ -3,7 +3,7 @@ import {cookies} from 'next/headers';
 import Mainicon from '/public/svgs/whisky-whiskey-svgrepo-com.svg';
 import {Login, Logout} from '.';
 
-export default function Header() {
+const Header = () => {
   const token = cookies().has('XSRF-TOKEN');
   return (
     <header className="bg-white shadow-sm bg-slate-300">
@@ -56,4 +56,6 @@ export default function Header() {
       </div>
     </header>
   );
-}
+};
+
+export default Header;
