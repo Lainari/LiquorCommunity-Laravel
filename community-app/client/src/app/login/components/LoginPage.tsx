@@ -1,6 +1,26 @@
+'use client';
+
 import Image from 'next/image';
+import {useEffect} from 'react';
 
 const LoginPage = () => {
+  const handleGoogleLogin = () => {
+    window.location.href = 'http://localhost:8000/login';
+  };
+
+  useEffect(() => {
+    const loginButton = document.getElementById('googleLoginButton');
+    if (loginButton) {
+      loginButton.addEventListener('click', handleGoogleLogin);
+
+      return () => {
+        loginButton.removeEventListener('click', handleGoogleLogin);
+      };
+    } else {
+      return;
+    }
+  }, []);
+
   return (
     <div className="flex justify-center items-center">
       <div className="w-2/3 flex bg-white rounded-lg shadow border md:mt-0 xl:p-0 mr-3">
