@@ -5,7 +5,7 @@ axios.defaults.withCredentials = true;
 axios.defaults.xsrfCookieName = 'XSRF-TOKEN';
 axios.defaults.xsrfHeaderName = 'X-CSRF-TOKEN';
 
-export default async function logoutRequest() {
+const logoutRequest = async () => {
   const response = await axios.post('http://localhost:8000/logout', {
     withCredentials: true,
   });
@@ -20,4 +20,6 @@ export default async function logoutRequest() {
   }
 
   return response;
-}
+};
+
+export default logoutRequest;
