@@ -2,10 +2,11 @@
 
 import Image from 'next/image';
 import {useEffect} from 'react';
+import loginRequest from '@/app/api/loginRequest';
 
 const LoginPage = () => {
   const handleGoogleLogin = () => {
-    window.location.href = 'http://localhost:8000/login';
+    loginRequest();
   };
 
   useEffect(() => {
