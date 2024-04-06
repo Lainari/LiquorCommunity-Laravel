@@ -1,5 +1,7 @@
+import req from './apiUtils';
+
 const loginRequest = () => {
-  window.location.href = 'http://localhost:8000/login';
+  req('login');
 };
 
 export default loginRequest;
