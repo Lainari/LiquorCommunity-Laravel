@@ -1,5 +1,5 @@
-import Iconnextsvg from './next.svg';
-import Iconvercel from './vercel.svg';
-import Mainicon from './whisky-whiskey-svgrepo-com.svg';
+import IconNextSvg from '/public/svgs/next.svg';
+import IconVercel from '/public/svgs/vercel.svg';
+import MainIcon from '/public/svgs/whisky-whiskey-svgrepo-com.svg';
 
-export {Iconnextsvg, Iconvercel, Mainicon};
+export {IconNextSvg, IconVercel, MainIcon};
