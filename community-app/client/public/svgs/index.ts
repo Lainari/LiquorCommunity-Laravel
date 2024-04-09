@@ -1,5 +1,7 @@
-import IconNextSvg from '/public/svgs/next.svg';
-import IconVercel from '/public/svgs/vercel.svg';
-import MainIcon from '/public/svgs/whisky-whiskey-svgrepo-com.svg';
+const icons = {
+  IconNextSvg: 'next.svg',
+  IconVercel: 'vercel.svg',
+  MainIcon: 'whisky-whiskey-svgrepo-com.svg',
+};
 
-export {IconNextSvg, IconVercel, MainIcon};
+export default icons;

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import {cookies} from 'next/headers';
-import MainIcon from '/public/svgs/whisky-whiskey-svgrepo-com.svg';
+import icons from '/public/svgs';
 import {Login, Logout} from '.';
 
 const Header = () => {
@@ -13,7 +13,7 @@ const Header = () => {
             href="/"
             className="flex items-center space-x-1 max-lg:justify-self-center"
           >
-            <Image className="h-8 w-auto" src={MainIcon} alt="Mainicon" />
+            <Image className="h-8 w-auto" src={icons.MainIcon} alt="Mainicon" />
             <h1 className="text-2xl font-extrabold leading-none tracking-tight text-black md:text-3xl lg:text-3xl">
               Whisky Community
             </h1>
