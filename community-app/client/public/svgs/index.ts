@@ -1,7 +1,7 @@
 const icons = {
-  IconNextSvg: 'next.svg',
-  IconVercel: 'vercel.svg',
-  MainIcon: 'whisky-whiskey-svgrepo-com.svg',
+  IconNextSvg: '/svgs/next.svg',
+  IconVercel: '/svgs/vercel.svg',
+  MainIcon: '/svgs/mainIcon.svg',
 };
 
 export default icons;
