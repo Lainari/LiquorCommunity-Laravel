@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import {cookies} from 'next/headers';
-import icons from '/public/svgs';
+import headerIcons from '/public/svgs/header';
 
 const Header = () => {
   const token = cookies().has('XSRF-TOKEN');
@@ -12,7 +12,7 @@ const Header = () => {
   }
   return (
     <header className="bg-white shadow-sm bg-slate-300">
-      <div className="mx-auto max-w-[2024px] px-0 md:px-12 lg:px-11 xl:px-16">
+      <div className="mx-auto w-full px-0 md:px-12 lg:px-11 xl:px-16">
         <div className="grid h-20 grid-cols-3 max-lg:grid-cols-2 max-sm:grid-col1 items-center justify-between gap-3">
           <a
             href="/"
@@ -20,7 +20,7 @@ const Header = () => {
           >
             <Image
               className="h-8 w-auto"
-              src={icons.MainIcon}
+              src={headerIcons.MainIcon}
               alt="MainIcon"
               width={30}
               height={30}

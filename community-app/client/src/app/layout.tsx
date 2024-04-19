@@ -6,9 +6,9 @@ const RootLayout = ({children}: {children: React.ReactNode}) => {
     <html>
       <body className="bg-gray-100 min-h-screen font-sans text-gray-900">
         <Header />
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-          {children}
-        </main>
+        <div className="h-[100vh]">
+          <div className="flex-1">{children}</div>
+        </div>
         <Footer />
       </body>
     </html>
