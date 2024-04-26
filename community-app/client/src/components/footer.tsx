@@ -3,8 +3,8 @@ import footerIcon from '/public/svgs/footer';
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-50 relative translate-y-0 w-full">
-      <div className="flex justify-center items-center border-t border-slate-400/10 py-8 sm:flex-row-reverse sm:justify-center">
+    <footer className="bg-slate-50 w-full">
+      <div className="flex justify-center items-center py-8 sm:flex-row-reverse sm:justify-center">
         <a
           className="mx-3"
           aria-label="move on Instagram"
