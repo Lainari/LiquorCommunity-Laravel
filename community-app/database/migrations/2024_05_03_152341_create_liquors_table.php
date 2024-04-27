@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('liquors', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id')->unique();
-            $table->string('name')->unique();
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->date('birthday');
+            $table->unsignedBigInteger('post_id');
+            $table->text('character');
+            $table->string('region');
+            $table->integer('alcohol');
             $table->timestamps();
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('liquors');
     }
 };

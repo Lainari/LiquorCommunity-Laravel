@@ -14,13 +14,12 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->enum('type', ['info', 'review', 'bar', 'shop']);
-            $table->string('nickname');
+            $table->enum('type', ['whisky', 'cocktail', 'liquor', 'review']);
+            $table->string('point');
             $table->string('title');
             $table->mediumText('content');
             $table->timestamps();
-            $table->boolean('approve')->default(false); // 관리자 승인 받으면 보이도록
-            // 외래키 설정
+            // 外部キー設定
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

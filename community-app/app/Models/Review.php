@@ -5,19 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Star extends Model
+class Review extends Model
 {
     use HasFactory;
-    protected $table = 'stars';
-    protected $fillable = ['post_id', 'rating', 'user_id'];
-    
-    public function post()
-    {
-        return $this->belongsTo(Post::class);
-    }
+
+    protected $fillable = ['post_id', 'user_id', 'content'];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
     }
 }

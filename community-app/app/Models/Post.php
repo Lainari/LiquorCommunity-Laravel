@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'content', 'nickname', 'user_id', 'type'];
+    protected $fillable = ['title', 'content', 'name', 'user_id', 'type', 'point'];
 
     public function user()
     {
@@ -23,10 +23,5 @@ class Post extends Model
     public function whisky()
     {
         return $this->hasOne(Whisky::class);
-    }
-
-    public function star()
-    {
-        return $this->hasOne(Star::class);
     }
 }
