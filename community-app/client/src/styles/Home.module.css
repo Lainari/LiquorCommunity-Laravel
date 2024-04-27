@@ -1,0 +1,21 @@
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.imageFadeIn {
+  animation: fadeIn 2s 0s forwards;
+  border-radius: 20px;
+}
+
+.textFadeIn1 {
+  animation: fadeIn 4s 0s forwards;
+}
+
+.textFadeIn2 {
+  animation: fadeIn 6s 0s forwards;
+}
