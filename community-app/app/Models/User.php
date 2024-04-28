@@ -12,7 +12,6 @@ class User extends Authenticatable implements JWTSubject
         'user_id',
         'name',
         'password', 
-        'birthday'
     ];
 
     // JWTSubject 인터페이스의 메서드를 구현

@@ -15,20 +15,18 @@ class UserController extends Controller
     {
         $request->validate([
             'user_id' => 'required|unique:users',
-            'nickname' => 'required|unique:users',
+            'name' => 'required|unique:users',
             'password' => 'required',
-            'birthday' => 'required|date',
         ]);
 
         $user = new User;
         $user->user_id = $request->user_id;
-        $user->nickname = $request->nickname;
+        $user->name = $request->name;
         $user->password = Hash::make($request->password);
-        $user->birthday = $request->birthday;
         $user->isAdmin = false;
         $user->save();
 
-        return redirect('/mypage/signin')->with('success', '회원가입이 완료되었습니다.');
+        return redirect('/login')->with('success', '회원가입이 완료되었습니다.');
     }
 
     // 아이디 & 닉네임 중복 체크
@@ -38,7 +36,7 @@ class UserController extends Controller
         $value = $request->input('value');
 
         // 타입에 따라 id 또는 nickname을 확인합니다.
-        $column = $type === 'user_id' ? 'user_id' : 'nickname';
+        $column = $type === 'user_id' ? 'user_id' : 'name';
 
         // users 테이블에서 해당 값이 있는지 확인합니다.
         $exists = User::where($column, $value)->exists();
@@ -73,7 +71,6 @@ class UserController extends Controller
         }
     }
 
-
     // 로그인 로직
     public function login(Request $request)
     {
@@ -89,7 +86,7 @@ class UserController extends Controller
             $token = JWTAuth::fromUser($user);
             return redirect('/')->withCookie('token', $token, 60);
         } else {
-            return redirect('/mypage/signin')->with('message', '잘못된 아이디 또는 비밀번호 입니다');
+            return redirect('/login')->with('message', '잘못된 아이디 또는 비밀번호 입니다');
         }
     }
 
@@ -98,12 +95,5 @@ class UserController extends Controller
     {
         $response = response()->json(['message' => '로그아웃 성공']);
         return $response->withoutCookie('token');
-    }
-
-    // 테스트 : 관리자 닉네임 찾기
-    public function getAdminNickname()
-    {
-        $admin = User::where('isAdmin', 1)->first();
-        return response()->json($admin->nickname);
     }
 }

@@ -1,7 +1,9 @@
 import req from './apiUtils';
 
 const loginRequest = () => {
-  req('login');
+  const res = req('/login');
+
+  return res;
 };
 
 export default loginRequest;

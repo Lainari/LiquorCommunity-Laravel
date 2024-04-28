@@ -33,10 +33,10 @@ class AuthController extends Controller
             'password' => 'required|string'
         ]);
 
-        // Check email
+        // メールの確認
         $user = User::where('email', $fields['email'])->first();
 
-        // Check password
+        // パスワードの確認
         if (!$user || !Hash::check($fields['password'], $user->password)) {
             return response(['message' => 'Invalid credentials'], 401);
         }
