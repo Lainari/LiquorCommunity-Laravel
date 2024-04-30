@@ -1,15 +1,39 @@
+'use client';
+
+import {useEffect, useState} from 'react';
+import Cookies from 'js-cookie';
 import Image from 'next/image';
-import {cookies} from 'next/headers';
+import {usePathname, useRouter} from 'next/navigation';
 import headerIcons from '/public/svgs/header';
 
 const Header = () => {
-  const token = cookies().has('XSRF-TOKEN');
-  const dashboardTitle = ['whisky', 'cocktail', 'liquor', 'review'];
-  if (token) {
-    dashboardTitle.push('mypage', 'logout');
-  } else {
-    dashboardTitle.push('login');
-  }
+  const pathname = usePathname();
+  const router = useRouter();
+  const token = Cookies.get('XSRF-TOKEN');
+  const [dashboardTitle, setDashboardTitle] = useState([
+    'whisky',
+    'cocktail',
+    'liquor',
+    'review',
+    'login',
+  ]);
+
+  useEffect(() => {
+    if (!token && pathname !== '/login') {
+      alert('Please sign in first');
+      router.push('/login');
+    } else {
+      setDashboardTitle([
+        'whisky',
+        'cocktail',
+        'liquor',
+        'review',
+        'mypage',
+        'logout',
+      ]);
+    }
+  }, [token]);
+
   return (
     <header className="bg-white shadow-sm bg-slate-300">
       <div className="mx-auto w-full px-0 md:px-12 lg:px-11 xl:px-16">
