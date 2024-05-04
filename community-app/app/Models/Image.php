@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     use HasFactory;
-    protected $fillable = ['post_id', 'path'];
+    protected $fillable = ['post_id', 'path', 'profile_image'];
 }

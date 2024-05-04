@@ -17,12 +17,14 @@ class UserController extends Controller
             'user_id' => 'required|unique:users',
             'name' => 'required|unique:users',
             'password' => 'required',
+            'profile' => 'required',
         ]);
 
         $user = new User;
         $user->user_id = $request->user_id;
         $user->name = $request->name;
         $user->password = Hash::make($request->password);
+        $user->profile = $request->profile;
         $user->isAdmin = false;
         $user->save();
 
