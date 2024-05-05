@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Log;
 use Tymon\JWTAuth\Facades\JWTAuth;
-
 class LoginController extends Controller
 {
     /**
@@ -48,15 +48,18 @@ class LoginController extends Controller
             $newUser->password = ''; // Password not required for OAuth login
             $newUser->save();
 
-            Auth::login($newUser);
+            auth()->login($newUser);
             $user = $newUser;
         } else {
-            Auth::login($existingUser);
+            auth()->login($existingUser);
             $user = $existingUser;
         }
 
-        $token = JWTAuth::fromUser($user);
+        $customClaims = ['exp' => Carbon::now()->addMinutes(60)->timestamp];
+        $token = auth()->login($user, $customClaims);
+        $user = auth()->user();
         session()->put('JWT', $token);
+        session()->put('user', $user);
         return redirect('/clear');
     }
 
@@ -67,7 +70,7 @@ class LoginController extends Controller
 
     public function logout()
     {
-        Auth::logout();
+        auth()->logout();
         return redirect('http://localhost:3000');
     }
 }
