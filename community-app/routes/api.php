@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,6 @@ Route::group([
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
-
 });
 
 Route::middleware('web')->group(function () {
@@ -32,9 +32,12 @@ Route::middleware('web')->group(function () {
 
         return response()->json(['hasJwtSession' => $hasJwtSession]);
     });
-    Route::get('/user', function () {
+    Route::get('/userId', function () {
         $user = session()->get('user');
         return response()->json(['user' => $user]);
-
     });
+});
+
+Route::middleware('api')->group(function () {
+    Route::get('/user/{id}', [UserController::class, 'show']);
 });

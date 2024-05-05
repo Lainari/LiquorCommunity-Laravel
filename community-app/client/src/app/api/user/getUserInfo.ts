@@ -1,7 +1,7 @@
 import req from '../apiUtils';
 
-const getUserInfo = async () => {
-  const response = await req('/user', 'GET');
+const getUserInfo = async (id: number) => {
+  const response = await req(`/user/${id}`, 'GET');
   return response.data;
 };
 
