@@ -1,7 +1,7 @@
 'use client';
 
 import {useEffect, useState} from 'react';
-import Cookies from 'js-cookie';
+import getJWT from '@/app/api/getJWT';
 import Image from 'next/image';
 import {usePathname, useRouter} from 'next/navigation';
 import headerIcons from '/public/svgs/header';
@@ -9,30 +9,32 @@ import headerIcons from '/public/svgs/header';
 const Header = () => {
   const pathname = usePathname();
   const router = useRouter();
-  const token = Cookies.get('XSRF-TOKEN');
   const [dashboardTitle, setDashboardTitle] = useState([
-    'whisky',
-    'cocktail',
-    'liquor',
-    'review',
-    'login',
+    'Checking permissions...',
   ]);
 
   useEffect(() => {
-    if (!token && pathname !== '/login') {
-      alert('Please sign in first');
-      router.push('/login');
-    } else {
-      setDashboardTitle([
-        'whisky',
-        'cocktail',
-        'liquor',
-        'review',
-        'mypage',
-        'logout',
-      ]);
-    }
-  }, [token]);
+    const checkToken = async () => {
+      const data = await getJWT();
+      const token = data.hasJwtSession;
+      if (!token && pathname !== '/login') {
+        alert('Please sign in first');
+        setDashboardTitle(['whisky', 'cocktail', 'liquor', 'review', 'login']);
+        router.push('/login');
+      } else {
+        setDashboardTitle([
+          'whisky',
+          'cocktail',
+          'liquor',
+          'review',
+          'mypage',
+          'logout',
+        ]);
+      }
+    };
+
+    checkToken();
+  }, [pathname, router]);
 
   return (
     <header className="bg-white shadow-sm bg-slate-300">

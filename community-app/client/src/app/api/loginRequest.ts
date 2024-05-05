@@ -1,7 +1,7 @@
-import req from './apiUtils';
+import loginHref from './loginHref';
 
 const loginRequest = () => {
-  const res = req('/login');
+  const res = loginHref('/login');
 
   return res;
 };

@@ -54,11 +54,10 @@ class LoginController extends Controller
             Auth::login($existingUser);
             $user = $existingUser;
         }
-        // JWT Token Create
-        $token = JWTAuth::fromUser($user);
 
-        // Redirect with Cookie
-        return redirect('/clear')->withCookie($token);
+        $token = JWTAuth::fromUser($user);
+        session()->put('JWT', $token);
+        return redirect('/clear');
     }
 
     public function clear()
