@@ -14,17 +14,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware(['auth:sanctum'])->get('/token', function (Request $request) {
-//     $user = $request->user();
-//     $hasJwtCookie = $request->hasCookie('JWT');
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+], function ($router) {
 
-//     return response()->json(['user' => $user, 'hasJwtCookie' => $hasJwtCookie]);
-// });
+    Route::post('login', 'AuthController@login');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
+    Route::post('me', 'AuthController@me');
+
+});
 
 Route::middleware('web')->group(function () {
     Route::get('/token', function () {
         $hasJwtSession = session()->get('JWT');
 
         return response()->json(['hasJwtSession' => $hasJwtSession]);
+    });
+    Route::get('/user', function () {
+        $user = session()->get('user');
+        return response()->json(['user' => $user]);
+
     });
 });
