@@ -29,7 +29,6 @@ Route::group([
 Route::middleware('web')->group(function () {
     Route::get('/token', function () {
         $hasJwtSession = session()->get('JWT');
-
         return response()->json(['hasJwtSession' => $hasJwtSession]);
     });
     Route::get('/userId', function () {
@@ -40,4 +39,5 @@ Route::middleware('web')->group(function () {
 
 Route::middleware('api')->group(function () {
     Route::get('/user/{id}', [UserController::class, 'show']);
+    Route::patch('/user/{id}', [UserController::class, 'update']);
 });
