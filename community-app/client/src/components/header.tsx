@@ -9,32 +9,41 @@ import headerIcons from '/public/svgs/header';
 const Header = () => {
   const pathname = usePathname();
   const router = useRouter();
+  const [token, setToken] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [dashboardTitle, setDashboardTitle] = useState([
     'Checking permissions...',
   ]);
-
+  const getToken = async () => {
+    const data = await getJWT();
+    setToken(data.hasJwtSession);
+    setLoading(false);
+  };
   useEffect(() => {
-    const checkToken = async () => {
-      const data = await getJWT();
-      const token = data.hasJwtSession;
-      if (!token && pathname !== '/login') {
-        alert('Please sign in first');
-        setDashboardTitle(['whisky', 'cocktail', 'liquor', 'review', 'login']);
-        router.push('/login');
-      } else {
-        setDashboardTitle([
-          'whisky',
-          'cocktail',
-          'liquor',
-          'review',
-          'mypage',
-          'logout',
-        ]);
-      }
-    };
-
+    getToken();
+  }, [pathname]);
+  const checkToken = async () => {
+    if (loading) {
+      return;
+    }
+    if (token === null && pathname !== '/login') {
+      alert('Please sign in first');
+      setDashboardTitle(['whisky', 'cocktail', 'liquor', 'review', 'login']);
+      router.push('/login');
+    } else {
+      setDashboardTitle([
+        'whisky',
+        'cocktail',
+        'liquor',
+        'review',
+        'mypage',
+        'logout',
+      ]);
+    }
+  };
+  useEffect(() => {
     checkToken();
-  }, [pathname, router]);
+  }, [token]);
 
   return (
     <header className="bg-white shadow-sm bg-slate-300">

@@ -40,9 +40,6 @@ const ProfileEditModal = ({
     if (profileImage) {
       formData.append('image', profileImage);
     }
-    console.log(formData.get('name'));
-    console.log(formData.get('email'));
-    console.log(formData.get('image'));
     try {
       await userAPI.patchUserProfile(Number(id), formData);
       handleCloseModal();

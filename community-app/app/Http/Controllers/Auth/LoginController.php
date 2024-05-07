@@ -37,7 +37,7 @@ class LoginController extends Controller
         }
 
         // Check if the user exists
-        $existingUser = User::where('email', $googleUser->getEmail())->first();
+        $existingUser = User::where('user_id', $googleUser->getId())->first();
 
         // If user doesn't exist, create a new one
         if (!$existingUser) {
