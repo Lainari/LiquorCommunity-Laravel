@@ -1,4 +1,4 @@
-# WhiskyCommunity-Laravel
+# LiquorCommunity-Laravel
 
 ## プロジェクト紹介
 - Laravelで開発したウェブサイトです
