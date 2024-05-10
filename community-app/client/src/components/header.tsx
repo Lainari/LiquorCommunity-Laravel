@@ -14,14 +14,13 @@ const Header = () => {
   const [dashboardTitle, setDashboardTitle] = useState([
     'Checking permissions...',
   ]);
+
   const getToken = async () => {
     const data = await getJWT();
     setToken(data.hasJwtSession);
     setLoading(false);
   };
-  useEffect(() => {
-    getToken();
-  }, [pathname]);
+
   const checkToken = async () => {
     if (loading) {
       return;
@@ -41,9 +40,13 @@ const Header = () => {
       ]);
     }
   };
+
+  useEffect(() => {
+    getToken();
+  }, [pathname]);
   useEffect(() => {
     checkToken();
-  }, [token]);
+  }, [token, loading]);
 
   return (
     <header className="bg-white shadow-sm bg-slate-300">
