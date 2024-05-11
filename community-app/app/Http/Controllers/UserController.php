@@ -45,4 +45,10 @@ class UserController extends Controller
         $request->session()->invalidate();
         return response()->json(['msg' => 'User deleted successfully!']);
     }
+    public function logout(Request $request)
+    {
+        JWTAuth::invalidate(JWTAuth::getToken());
+        $request->session()->invalidate();
+        return response()->json(['msg' => 'User logged out successfully!']);
+    }
 }

@@ -1,9 +1,10 @@
 'use client';
 
 import {useEffect, useState} from 'react';
-import getJWT from '@/app/api/getJWT';
 import Image from 'next/image';
 import {usePathname, useRouter} from 'next/navigation';
+import getJWT from '@/app/api/getJWT';
+import userAPI from '@/app/api/user';
 import headerIcons from '/public/svgs/header';
 
 const Header = () => {
@@ -43,6 +44,19 @@ const Header = () => {
     }
   };
 
+  const handleLogout = async () => {
+    const check = confirm('Are you sure you want to logout?');
+    if (check) {
+      try {
+        await userAPI.postUserLogout();
+        alert('Successfully logged out');
+        router.push('/login');
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
   useEffect(() => {
     getToken();
     checkToken();
@@ -67,15 +81,25 @@ const Header = () => {
             </a>
           </div>
           <nav className="flex space-x-10 justify-self-center max-lg:hidden">
-            {dashboardTitle.map(title => (
-              <a
-                key={title}
-                href={`/${title}`}
-                className="text-xl text-black hover:text-gray-500"
-              >
-                {title.slice(0, 1).toUpperCase() + title.slice(1)}
-              </a>
-            ))}
+            {dashboardTitle.map(title =>
+              title === 'logout' ? (
+                <div
+                  key={title}
+                  onClick={handleLogout}
+                  className="text-xl text-black hover:text-gray-500 cursor-pointer"
+                >
+                  {title.slice(0, 1).toUpperCase() + title.slice(1)}
+                </div>
+              ) : (
+                <a
+                  key={title}
+                  href={`/${title}`}
+                  className="text-xl text-black hover:text-gray-500"
+                >
+                  {title.slice(0, 1).toUpperCase() + title.slice(1)}
+                </a>
+              )
+            )}
           </nav>
           <div className="ml-6 justify-self-end max-sm:hidden">
             <input
