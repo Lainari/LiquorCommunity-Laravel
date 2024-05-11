@@ -29,7 +29,7 @@ const Header = () => {
       alert('Please sign in first');
       setDashboardTitle(['whisky', 'cocktail', 'liquor', 'review', 'login']);
       router.push('/login');
-    } else {
+    } else if (token !== null) {
       setDashboardTitle([
         'whisky',
         'cocktail',
@@ -38,15 +38,15 @@ const Header = () => {
         'mypage',
         'logout',
       ]);
+    } else {
+      setDashboardTitle(['whisky', 'cocktail', 'liquor', 'review', 'login']);
     }
   };
 
   useEffect(() => {
     getToken();
-  }, [pathname]);
-  useEffect(() => {
     checkToken();
-  }, [token, loading]);
+  }, [pathname, token, loading]);
 
   return (
     <header className="bg-white shadow-sm bg-slate-300">

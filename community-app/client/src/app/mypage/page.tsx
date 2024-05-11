@@ -2,11 +2,13 @@
 
 import {useEffect, useState} from 'react';
 import Image from 'next/image';
+import {useRouter} from 'next/navigation';
 import userAPI from '../api/user';
 import {UserData} from '@/app/interfaces/api/user';
 import ProfileEditModal from './ProfileEditModal';
 
 const MyPage = () => {
+  const router = useRouter();
   const [userData, setUserData] = useState<UserData | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
@@ -17,6 +19,19 @@ const MyPage = () => {
     const userInfo = await userAPI.getUserInfo(userData.user.id);
     setUserData(userInfo.user);
     setIsLoading(false);
+  };
+
+  const handleDeleteUser = async () => {
+    const check = confirm('Are you sure you want to delete your account?');
+    if (userData && check) {
+      try {
+        await userAPI.deleteUser(userData.id);
+        alert('Your account has been deleted');
+        router.push('/login');
+      } catch (error) {
+        alert('Failed to delete your account');
+      }
+    }
   };
 
   const handleOpenModal = () => {
@@ -69,7 +84,10 @@ const MyPage = () => {
                 >
                   <p className="text-xl">Edit Profile</p>
                 </div>
-                <div className="mx-6 flex justify-center items-center border rounded-lg w-44 h-12 bg-rose-400 cursor-pointer">
+                <div
+                  className="mx-6 flex justify-center items-center border rounded-lg w-44 h-12 bg-rose-400 cursor-pointer"
+                  onClick={handleDeleteUser}
+                >
                   <p className="text-xl">Delete Account</p>
                 </div>
               </div>

@@ -40,4 +40,5 @@ Route::middleware('web')->group(function () {
 Route::middleware('api')->group(function () {
     Route::get('/user/{id}', [UserController::class, 'show']);
     Route::patch('/user/{id}', [UserController::class, 'update']);
+    Route::delete('/user/{id}', [UserController::class, 'delete']);
 });
