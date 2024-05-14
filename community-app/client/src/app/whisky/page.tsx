@@ -1,4 +1,5 @@
 import React from 'react';
+import PostCard from './components/PostCard';
 
 const Whisky: React.FC = () => {
   return (
@@ -26,7 +27,7 @@ const Whisky: React.FC = () => {
             </em>
           </p>
           <div className="inline-flex h-10 items-center justify-center rounded-md bg-gray-900 px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50">
-            <button>Create Whisky Posts</button>
+            <div>Create Whisky Posts</div>
           </div>
         </div>
       </div>
@@ -34,6 +35,9 @@ const Whisky: React.FC = () => {
         <p className="text-6xl font-bold tracking-tighter">
           Whisky Information
         </p>
+      </div>
+      <div className="mt-10 w-3/5">
+        <PostCard />
       </div>
     </div>
   );
