@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -38,8 +39,12 @@ Route::middleware('web')->group(function () {
 });
 
 Route::middleware('api')->group(function () {
+    // ユーザーのAPI
     Route::get('/user/{id}', [UserController::class, 'show']);
     Route::patch('/user/{id}', [UserController::class, 'update']);
     Route::delete('/user/{id}', [UserController::class, 'delete']);
     Route::post('/user', [UserController::class, 'logout']);
+
+    // Whisky投稿のAPI
+    Route::get('/whisky', [PostController::class, 'whiskyIndex']);
 });
