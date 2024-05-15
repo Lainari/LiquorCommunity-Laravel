@@ -47,4 +47,5 @@ Route::middleware('api')->group(function () {
 
     // Whisky投稿のAPI
     Route::get('/whisky', [PostController::class, 'whiskyIndex']);
+    Route::post('/whisky', [PostController::class, 'whiskyStore']);
 });
