@@ -45,6 +45,7 @@ class LoginController extends Controller
             $newUser->user_id = $googleUser->getId();
             $newUser->name = $googleUser->getName();
             $newUser->email = $googleUser->getEmail();
+            $newUser->profile = $googleUser->getAvatar();
             $newUser->password = ''; // Password not required for OAuth login
             $newUser->save();
 

@@ -57,13 +57,12 @@ const MyPage = () => {
       ) : (
         userData && (
           <div className="flex justify-center mt-10">
-            <div className="border border-gray-300 rounded-full overflow-hidden mr-10">
+            <div className="flex items-center border border-gray-300 rounded-full overflow-hidden mr-10">
               <Image
                 src={userData.profile}
                 alt={'profile'}
                 width={200}
                 height={200}
-                className="p-6"
               />
             </div>
             <div className="flex flex-col justify-center">
