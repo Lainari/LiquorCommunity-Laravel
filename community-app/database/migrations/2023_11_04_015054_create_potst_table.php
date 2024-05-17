@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->enum('type', ['whisky', 'cocktail', 'liquor', 'review']);
-            $table->string('point');
+            $table->integer('point')->nullable();
             $table->string('title');
             $table->mediumText('content');
             $table->timestamps();
