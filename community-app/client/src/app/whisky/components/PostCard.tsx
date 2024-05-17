@@ -1,6 +1,7 @@
 'use client';
 
 import {useState, useEffect} from 'react';
+import Image from 'next/image';
 import whiskyAPI from '@/app/api/whisky';
 import {WhiskyPostsType} from '@/app/interfaces/posts';
 
@@ -8,11 +9,11 @@ const PostCard = () => {
   const [posts, setPosts] = useState<WhiskyPostsType[]>([]);
   const getPosts = async () => {
     const response = await whiskyAPI.getPosts();
-    setPosts(response.data);
+    setPosts(response);
   };
   useEffect(() => {
     getPosts();
-  }, posts);
+  }, []);
 
   if (!posts || posts.length === 0) {
     return (
@@ -27,7 +28,13 @@ const PostCard = () => {
       <div>
         {posts.map(post => (
           <div key={post.id}>
-            <h2>{post.title}</h2>
+            <p className="text-2xl">{post.title}</p>
+            <Image
+              src={post.images[0].path}
+              alt={post.title}
+              width={30}
+              height={30}
+            />
             <p>{post.content}</p>
           </div>
         ))}
